@@ -18,18 +18,18 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 210 11% 15%;
 
-    /* Aditya Birla Red Primary - Enhanced */
-    --primary: 352 85% 46%;  /* #C91429 */
+    /* Aditya Birla Red Primary - Corporate Brand */
+    --primary: 352 85% 46%;  /* #C91429 - Aditya Birla Red */
     --primary-foreground: 0 0% 100%;
     --primary-light: 352 85% 85%;
     --primary-dark: 352 85% 35%;
     --primary-glow: 352 85% 55%;
 
-    /* Professional Gold Secondary - Enhanced */
-    --secondary: 43 74% 49%;  /* Gold accent */
+    /* Professional Gold Secondary - Corporate Accent */
+    --secondary: 43 74% 49%;  /* #D4AF37 - Gold */
     --secondary-foreground: 210 11% 15%;
-    --secondary-light: 43 74% 90%;
-    --secondary-dark: 43 74% 35%;
+    --secondary-light: 43 74% 85%;
+    --secondary-dark: 43 74% 30%;
 
     /* Neutral Grays - Enhanced */
     --muted: 210 40% 96%;
@@ -148,18 +148,32 @@ All colors MUST be HSL.
     line-height: var(--line-height-normal);
   }
 
-  /* Enhanced typography classes */
+  /* Corporate Typography Classes */
+  .text-hero {
+    font-size: 4.5rem;
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  
   .text-display {
-    font-size: var(--font-size-3xl);
+    font-size: 3rem;
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tight);
     font-weight: 700;
   }
   
   .text-heading {
-    font-size: var(--font-size-2xl);
+    font-size: 2.25rem;
     line-height: var(--line-height-tight);
     letter-spacing: var(--letter-spacing-tight);
+    font-weight: 600;
+  }
+  
+  .text-section-title {
+    font-size: 2.5rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
     font-weight: 600;
   }
   
@@ -168,6 +182,12 @@ All colors MUST be HSL.
     line-height: var(--line-height-normal);
     letter-spacing: var(--letter-spacing-normal);
     font-weight: 500;
+  }
+
+  @media (max-width: 768px) {
+    .text-hero { font-size: 3rem; }
+    .text-display { font-size: 2rem; }
+    .text-section-title { font-size: 1.875rem; }
   }
 
   /* Enhanced button animations */
