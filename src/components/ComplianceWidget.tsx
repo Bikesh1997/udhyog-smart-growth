@@ -58,10 +58,10 @@ const ComplianceWidget = () => {
   };
 
   return (
-    <Card className="h-full">
+    <Card className="h-full card-elevated">
       <CardHeader className="pb-3">
-        <CardTitle className="flex items-center gap-2 text-lg">
-          <CalendarDays className="h-5 w-5 text-primary" />
+        <CardTitle className="flex items-center gap-2 text-lg text-heading">
+          <CalendarDays className="h-5 w-5 text-primary glow-on-hover" />
           Compliance Deadlines
         </CardTitle>
       </CardHeader>
@@ -69,27 +69,27 @@ const ComplianceWidget = () => {
         {upcomingDeadlines.map((item) => (
           <div
             key={item.id}
-            className="flex items-start justify-between p-3 rounded-lg border bg-card hover:bg-muted/30 transition-colors"
+            className="card-interactive flex items-start justify-between p-4 rounded-lg border bg-gradient-to-r from-card to-muted/30"
           >
-            <div className="flex-1 space-y-1">
+            <div className="flex-1 space-y-2">
               <div className="flex items-center gap-2">
-                <h4 className="font-medium text-sm">{item.title}</h4>
-                <Badge className={`${getStatusColor(item.status)} text-xs px-2 py-1`}>
+                <h4 className="font-semibold text-sm text-subheading">{item.title}</h4>
+                <Badge className={`${getStatusColor(item.status)} text-xs px-3 py-1 font-medium interactive-scale`}>
                   {getStatusIcon(item.status)}
                   <span className="ml-1">{item.daysLeft} days</span>
                 </Badge>
               </div>
-              <p className="text-xs text-muted-foreground">{item.description}</p>
-              <p className="text-xs font-medium text-foreground">Due: {item.deadline}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+              <p className="text-xs font-semibold text-foreground">Due: {item.deadline}</p>
             </div>
-            <Button size="sm" variant="outline" className="ml-2 text-xs">
+            <Button size="sm" variant="premium" className="ml-3 text-xs">
               File Now
             </Button>
           </div>
         ))}
         
-        <div className="pt-2 border-t">
-          <Button variant="default" className="w-full" size="sm">
+        <div className="pt-3 border-t border-border">
+          <Button variant="default" className="w-full" size="lg">
             View All Compliance Tasks
           </Button>
         </div>
