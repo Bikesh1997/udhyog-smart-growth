@@ -31,24 +31,29 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
 					light: 'hsl(var(--primary-light))',
-					dark: 'hsl(var(--primary-dark))'
+					dark: 'hsl(var(--primary-dark))',
+					glow: 'hsl(var(--primary-glow))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))',
-					light: 'hsl(var(--secondary-light))'
+					light: 'hsl(var(--secondary-light))',
+					dark: 'hsl(var(--secondary-dark))'
 				},
 				destructive: {
 					DEFAULT: 'hsl(var(--destructive))',
-					foreground: 'hsl(var(--destructive-foreground))'
+					foreground: 'hsl(var(--destructive-foreground))',
+					light: 'hsl(var(--destructive-light))'
 				},
 				muted: {
 					DEFAULT: 'hsl(var(--muted))',
-					foreground: 'hsl(var(--muted-foreground))'
+					foreground: 'hsl(var(--muted-foreground))',
+					dark: 'hsl(var(--muted-dark))'
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					hover: 'hsl(var(--accent-hover))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -60,11 +65,13 @@ export default {
 				},
 				success: {
 					DEFAULT: 'hsl(var(--success))',
-					foreground: 'hsl(var(--success-foreground))'
+					foreground: 'hsl(var(--success-foreground))',
+					light: 'hsl(var(--success-light))'
 				},
 				warning: {
 					DEFAULT: 'hsl(var(--warning))',
-					foreground: 'hsl(var(--warning-foreground))'
+					foreground: 'hsl(var(--warning-foreground))',
+					light: 'hsl(var(--warning-light))'
 				},
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
@@ -121,28 +128,6 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			keyframes: {
-				'accordion-down': {
-					from: {
-						height: '0'
-					},
-					to: {
-						height: 'var(--radix-accordion-content-height)'
-					}
-				},
-				'accordion-up': {
-					from: {
-						height: 'var(--radix-accordion-content-height)'
-					},
-					to: {
-						height: '0'
-					}
-				}
-			},
-			animation: {
-				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
-			}
 		}
 	},
 	plugins: [require("tailwindcss-animate")],
