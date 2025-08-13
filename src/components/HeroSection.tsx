@@ -3,7 +3,11 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowRight, Shield, TrendingUp, Star } from "lucide-react";
 import heroBg from "@/assets/corporate-hero.jpg";
 
-const HeroSection = () => {
+interface HeroSectionProps {
+  onStartAnalysis: () => void;
+}
+
+const HeroSection = ({ onStartAnalysis }: HeroSectionProps) => {
   return (
     <section className="relative min-h-[700px] flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -11,7 +15,7 @@ const HeroSection = () => {
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: `url(${heroBg})` }}
       >
-        {/* Premium Overlay - Subtle red gradient */}
+        {/* Aditya Birla Red Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-primary/85 via-primary/60 to-primary/40"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/10"></div>
       </div>
@@ -31,27 +35,24 @@ const HeroSection = () => {
           </div>
           
           <h1 className="text-hero text-white mb-6 leading-tight max-w-5xl">
-            Empowering MSMEs with
+            Smart Financial Solutions
             <span className="block text-secondary font-bold">
-              Intelligent Financial Solutions
+              for MSMEs
             </span>
           </h1>
           
-          <p className="text-xl lg:text-2xl text-white/95 mb-4 leading-relaxed max-w-4xl font-medium">
-            Streamline loan management, automate compliance, and unlock growth opportunities 
-            with our AI-powered platform designed specifically for your business success.
-          </p>
-          
-          <p className="text-lg text-white/80 mb-10 max-w-3xl">
-            Trusted by 50,000+ MSMEs across India • ₹2,500Cr+ loans disbursed • 99.5% compliance rate
+          <p className="text-xl lg:text-2xl text-white/95 mb-10 leading-relaxed max-w-4xl font-medium">
+            Get instant compliance insights, growth opportunities, and loan recommendations 
+            tailored for your business success.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 mb-16">
             <Button 
-              size="lg" 
-              className="bg-white text-primary hover:bg-secondary hover:text-white transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-10 py-5 text-lg font-semibold rounded-full shadow-2xl"
+              size="lg"
+              onClick={onStartAnalysis}
+              className="bg-gradient-to-r from-secondary to-secondary-dark text-secondary-foreground hover:from-secondary-light hover:to-secondary transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-10 py-5 text-lg font-semibold rounded-full shadow-2xl border-2 border-secondary/20"
             >
-              Get Started Today
+              Do My Smart Analysis
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
             <Button 
