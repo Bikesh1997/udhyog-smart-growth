@@ -8,46 +8,55 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* MSME Professional Theme */
-    --background: 220 20% 97%;
-    --foreground: 210 15% 20%;
+    /* Aditya Birla Finance Brand Colors */
+    --background: 0 0% 98%;
+    --foreground: 210 11% 15%;
 
     --card: 0 0% 100%;
-    --card-foreground: 210 15% 20%;
+    --card-foreground: 210 11% 15%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 210 15% 20%;
+    --popover-foreground: 210 11% 15%;
 
-    /* Professional Blue Primary */
-    --primary: 213 94% 68%;
+    /* Aditya Birla Red Primary */
+    --primary: 352 85% 46%;  /* #C91429 */
     --primary-foreground: 0 0% 100%;
-    --primary-light: 213 100% 85%;
-    --primary-dark: 213 94% 45%;
+    --primary-light: 352 85% 85%;
+    --primary-dark: 352 85% 35%;
 
-    /* Trust Green Secondary */
-    --secondary: 142 76% 36%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-light: 142 76% 85%;
+    /* Professional Gold Secondary */
+    --secondary: 43 74% 49%;  /* Gold accent */
+    --secondary-foreground: 210 11% 15%;
+    --secondary-light: 43 74% 90%;
 
     /* Neutral Grays */
-    --muted: 220 13% 91%;
-    --muted-foreground: 220 9% 46%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 210 6% 46%;
 
-    --accent: 47 96% 89%;
-    --accent-foreground: 24 45% 20%;
+    --accent: 43 74% 95%;
+    --accent-foreground: 210 11% 15%;
 
-    /* Alert Colors */
+    /* Status Colors */
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     --warning: 43 96% 56%;
     --warning-foreground: 24 45% 20%;
-    --destructive: 0 84% 60%;
+    --destructive: 352 85% 46%;
     --destructive-foreground: 0 0% 100%;
 
     /* Surfaces */
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 213 94% 68%;
+    --border: 210 20% 89%;
+    --input: 210 20% 89%;
+    --ring: 352 85% 46%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-dark)));
+    --gradient-gold: linear-gradient(135deg, hsl(var(--secondary)), hsl(43 74% 60%));
+    --shadow-elegant: 0 10px 25px -5px hsl(var(--primary) / 0.15);
+    --shadow-card: 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  }
 
     --radius: 0.5rem;
 
@@ -69,48 +78,40 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 210 15% 7%;
-    --foreground: 220 20% 97%;
+    --background: 210 11% 7%;
+    --foreground: 0 0% 98%;
 
-    --card: 210 15% 10%;
-    --card-foreground: 220 20% 97%;
+    --card: 210 11% 10%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 210 15% 10%;
-    --popover-foreground: 220 20% 97%;
+    --popover: 210 11% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 213 94% 68%;
+    --primary: 352 85% 46%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 213 100% 85%;
-    --primary-dark: 213 94% 45%;
+    --primary-light: 352 85% 85%;
+    --primary-dark: 352 85% 35%;
 
-    --secondary: 142 76% 36%;
-    --secondary-foreground: 0 0% 100%;
-    --secondary-light: 142 76% 85%;
+    --secondary: 43 74% 49%;
+    --secondary-foreground: 210 11% 15%;
+    --secondary-light: 43 74% 90%;
 
-    --muted: 210 15% 15%;
-    --muted-foreground: 220 9% 66%;
+    --muted: 210 11% 15%;
+    --muted-foreground: 210 6% 66%;
 
-    --accent: 47 96% 15%;
-    --accent-foreground: 47 96% 89%;
+    --accent: 43 74% 15%;
+    --accent-foreground: 43 74% 95%;
 
     --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
     --warning: 43 96% 56%;
     --warning-foreground: 24 45% 20%;
-    --destructive: 0 84% 60%;
+    --destructive: 352 85% 46%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 210 15% 15%;
-    --input: 210 15% 15%;
-    --ring: 213 94% 68%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 210 11% 15%;
+    --input: 210 11% 15%;
+    --ring: 352 85% 46%;
   }
 }
 
@@ -120,6 +121,19 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter;
+  }
+
+  /* Custom button animations */
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary-dark transform hover:-translate-y-0.5 transition-all duration-300 shadow-md hover:shadow-lg;
+  }
+  
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/90 border border-secondary/20 transform hover:-translate-y-0.5 transition-all duration-300;
+  }
+  
+  .card-elevated {
+    @apply shadow-card hover:shadow-elegant transform hover:-translate-y-1 transition-all duration-300;
   }
 }
