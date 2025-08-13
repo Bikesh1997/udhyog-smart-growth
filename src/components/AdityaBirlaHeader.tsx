@@ -8,54 +8,38 @@ const AdityaBirlaHeader = () => {
   const [isNotificationOpen, setIsNotificationOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-white/98 backdrop-blur-md border-b border-gray-100 shadow-sm">
-      <div className="container mx-auto px-6 py-4">
+    <header className="w-full bg-card/95 backdrop-blur-sm border-b border-border sticky top-0 z-50 shadow-md">
+      <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
-          {/* Left - Logo and Navigation */}
-          <div className="flex items-center space-x-8">
-            {/* AB Logo */}
-            <div className="flex items-center space-x-3">
-              <div className="bg-primary p-3 rounded-lg shadow-md">
-                <span className="text-white font-bold text-xl">AB</span>
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-elegant glow-on-hover transition-all duration-300">
+                <span className="text-primary-foreground font-bold text-xl">AB</span>
               </div>
               <div>
-                <h1 className="text-2xl font-bold text-foreground">Aditya Birla Finance</h1>
-                <p className="text-sm text-muted-foreground font-medium">Smart Financial Solutions for MSMEs</p>
+                <h1 className="font-bold text-xl text-foreground tracking-tight">Aditya Birla Finance</h1>
+                <p className="text-xs text-muted-foreground font-medium">Smart Financial Solutions for MSMEs</p>
               </div>
             </div>
-
-            {/* Navigation Menu */}
-            <nav className="hidden lg:flex items-center space-x-8">
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">OUR STORY</a>
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">BUSINESS</a>
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">MEDIA</a>
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">INVESTORS</a>
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">COMMUNITY</a>
-              <a href="#" className="text-foreground hover:text-primary font-medium transition-colors">SUSTAINABILITY</a>
-            </nav>
+            <div className="flex items-center gap-2">
+              <Badge className="bg-gradient-to-r from-secondary to-secondary-dark text-secondary-foreground text-xs font-medium px-3 py-1 hover:shadow-md transition-all duration-300">
+                <Shield className="h-3 w-3 mr-1" />
+                Secure Dashboard
+              </Badge>
+              <Badge variant="outline" className="text-xs font-medium px-3 py-1 hover:bg-accent transition-all duration-300">
+                Digital Platform
+              </Badge>
+            </div>
           </div>
-
-          {/* Right - Actions and User */}
-          <div className="flex items-center space-x-6">
-            {/* Search */}
-            <div className="relative hidden lg:block">
+          
+          <div className="flex items-center gap-3">
+            <div className="relative">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search loans, payments, alerts..."
-                className="pl-10 pr-4 py-3 w-80 text-sm border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary bg-gray-50/50"
+                className="input-enhanced pl-10 pr-4 py-3 text-sm rounded-lg w-80 font-medium placeholder:text-muted-foreground/70"
               />
-            </div>
-
-            {/* Trust Badges */}
-            <div className="hidden lg:flex items-center space-x-3">
-              <Badge variant="outline" className="text-xs bg-green-50 text-green-700 border-green-200 px-3 py-1">
-                <Shield className="h-3 w-3 mr-1" />
-                Secure Dashboard
-              </Badge>
-              <Badge variant="outline" className="text-xs bg-blue-50 text-blue-700 border-blue-200 px-3 py-1">
-                Digital Platform
-              </Badge>
             </div>
             
             {/* Notifications */}
