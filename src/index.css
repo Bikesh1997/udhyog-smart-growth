@@ -7,29 +7,29 @@ All colors MUST be HSL.
 */
 
 @layer base {
-  :root {
-    /* Aditya Birla Finance Brand Colors - Enhanced */
-    --background: 0 0% 98%;
-    --foreground: 210 11% 15%;
+:root {
+    /* Aditya Birla Finance Brand Colors - High Fidelity */
+    --background: 250 250 250;
+    --foreground: 33 33 33;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 11% 15%;
+    --card: 255 255 255;
+    --card-foreground: 60 60 60;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 11% 15%;
+    --popover: 255 255 255;
+    --popover-foreground: 60 60 60;
 
-    /* Aditya Birla Red Primary - Enhanced */
-    --primary: 352 85% 46%;  /* #C91429 */
-    --primary-foreground: 0 0% 100%;
-    --primary-light: 352 85% 85%;
-    --primary-dark: 352 85% 35%;
-    --primary-glow: 352 85% 55%;
+    /* Aditya Birla Red Primary - Exact Match */
+    --primary: 201 20 41;  /* #C91429 - Exact brand color */
+    --primary-foreground: 255 255 255;
+    --primary-light: 230 60 80;
+    --primary-dark: 160 15 30;
+    --primary-glow: 255 120 140;
 
-    /* Professional Gold Secondary - Enhanced */
-    --secondary: 43 74% 49%;  /* Gold accent */
-    --secondary-foreground: 210 11% 15%;
-    --secondary-light: 43 74% 90%;
-    --secondary-dark: 43 74% 35%;
+    /* Professional Beige/Gold Secondary */
+    --secondary: 240 220 180;
+    --secondary-foreground: 60 60 60;
+    --secondary-light: 248 235 200;
+    --secondary-dark: 200 180 140;
 
     /* Neutral Grays - Enhanced */
     --muted: 210 40% 96%;
@@ -141,11 +141,18 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-inter antialiased;
-    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
-    letter-spacing: var(--letter-spacing-normal);
-    line-height: var(--line-height-normal);
+body {
+    font-family: 'Inter', 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+    background: linear-gradient(to bottom, hsl(var(--background)), rgba(248, 250, 252, 0.5));
+    color: hsl(var(--foreground));
+    line-height: 1.6;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   /* Enhanced typography classes */

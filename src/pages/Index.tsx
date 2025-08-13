@@ -1,119 +1,177 @@
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import AdityaBirlaHeader from "@/components/AdityaBirlaHeader";
+import HeroSection from "@/components/HeroSection";
+import EnhancedLoanStatus from "@/components/EnhancedLoanStatus";
 import LoanComplianceWidget from "@/components/LoanComplianceWidget";
 import LoanAlerts from "@/components/LoanAlerts";
 import RegulatoryPanel from "@/components/RegulatoryPanel";
+import QuickActions from "@/components/QuickActions";
 import FinancingOpportunities from "@/components/FinancingOpportunities";
 import CompetitorAnalysis from "@/components/CompetitorAnalysis";
 import LearningResources from "@/components/LearningResources";
-import EnhancedLoanStatus from "@/components/EnhancedLoanStatus";
-import QuickActions from "@/components/QuickActions";
-import { Badge } from "@/components/ui/badge";
-import { TrendingUp, Shield, Star } from "lucide-react";
+import { User, Crown, TrendingUp, Shield, Briefcase, MapPin, Phone, Mail } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <AdityaBirlaHeader />
+      <HeroSection />
       
-      <main className="container mx-auto px-4 py-6 space-y-6">
-        {/* Welcome Section */}
-        <div className="space-y-4 p-6 bg-gradient-to-r from-card to-muted/30 rounded-xl border border-border shadow-card">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <h2 className="text-display bg-gradient-to-r from-primary to-primary-dark bg-clip-text text-transparent">
-                Welcome back, Rajesh!
-              </h2>
-              <Badge className="bg-gradient-to-r from-success to-success text-success-foreground interactive-scale">
-                <Star className="h-3 w-3 mr-1" />
-                Premium Account
-              </Badge>
+      {/* Welcome Section */}
+      <div className="container mx-auto px-6 py-12">
+        <div className="bg-white rounded-2xl p-8 mb-12 shadow-lg border border-gray-100">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6">
+            <div className="space-y-4">
+              <div className="flex items-center gap-4">
+                <div className="bg-primary/10 p-4 rounded-full">
+                  <User className="h-7 w-7 text-primary" />
+                </div>
+                <div>
+                  <h1 className="text-4xl font-bold text-foreground">Welcome back, Rajesh!</h1>
+                  <p className="text-lg text-muted-foreground">Your financial dashboard is ready with AI-powered insights</p>
+                </div>
+              </div>
+              
+              <div className="flex flex-wrap items-center gap-4">
+                <Badge className="bg-primary text-primary-foreground px-6 py-3 text-sm">
+                  <Crown className="h-4 w-4 mr-2" />
+                  Premium Account
+                </Badge>
+                <Badge variant="outline" className="border-green-500 text-green-700 bg-green-50 px-6 py-3 text-sm">
+                  <Shield className="h-4 w-4 mr-2" />
+                  Verified MSME
+                </Badge>
+                <Badge variant="outline" className="border-blue-500 text-blue-700 bg-blue-50 px-6 py-3 text-sm">
+                  <TrendingUp className="h-4 w-4 mr-2" />
+                  Credit Score: 785
+                </Badge>
+              </div>
             </div>
-            <div className="text-right text-sm text-muted-foreground">
-              <p>Last login: Today at 9:30 AM</p>
-              <p>Account balance: ₹2,45,000</p>
+            
+            <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6">
+              <div className="text-center lg:text-right">
+                <p className="text-sm text-muted-foreground font-medium">Total Portfolio Value</p>
+                <p className="text-3xl font-bold text-primary">₹45,67,890</p>
+              </div>
+              <Button size="lg" className="btn-primary px-8 py-4">
+                <Briefcase className="h-5 w-5 mr-2" />
+                View Portfolio
+              </Button>
             </div>
           </div>
-          <p className="text-muted-foreground text-lg leading-relaxed">
-            Manage your loans, discover growth opportunities, and stay compliant with ease.
-          </p>
         </div>
         
-        {/* Feature 1: SMART Compliance Manager (Loans) */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-primary/5 to-primary/10 rounded-lg border border-primary/20">
-            <div className="w-3 h-8 bg-gradient-to-b from-primary to-primary-dark rounded-full"></div>
-            <h3 className="text-heading flex items-center gap-3">
-              <Shield className="h-6 w-6 text-primary glow-on-hover" />
-              SMART Compliance Manager
-            </h3>
-            <Badge className="bg-gradient-to-r from-primary/20 to-primary/10 text-primary font-semibold px-4 py-1">
-              Loan Management
-            </Badge>
+        {/* SMART Compliance Manager Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-primary/5 px-6 py-3 rounded-full mb-4">
+              <Shield className="h-6 w-6 text-primary" />
+              <span className="text-primary font-semibold">SMART Compliance Manager</span>
+            </div>
+            <h2 className="text-4xl font-bold text-foreground mb-4">AI-Powered Compliance Tracking</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Stay ahead of regulatory requirements with automated alerts, EMI tracking, and intelligent compliance management
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="lg:col-span-1">
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+            <div className="xl:col-span-2">
               <EnhancedLoanStatus />
             </div>
-            <div className="lg:col-span-1">
-              <LoanComplianceWidget />
-            </div>
-            <div className="lg:col-span-1">
-              <LoanAlerts />
-            </div>
-            <div className="lg:col-span-1">
-              <RegulatoryPanel />
-            </div>
-          </div>
-        </section>
-        
-        {/* Feature 2: Business Growth Advisor (MSME Loan Customers) */}
-        <section className="space-y-6">
-          <div className="flex items-center gap-3 p-4 bg-gradient-to-r from-secondary/5 to-secondary/10 rounded-lg border border-secondary/20">
-            <div className="w-3 h-8 bg-gradient-to-b from-secondary to-secondary-dark rounded-full"></div>
-            <h3 className="text-heading flex items-center gap-3">
-              <TrendingUp className="h-6 w-6 text-secondary glow-on-hover" />
-              Business Growth Advisor
-            </h3>
-            <Badge className="bg-gradient-to-r from-secondary/20 to-secondary/10 text-secondary font-semibold px-4 py-1">
-              MSME Growth
-            </Badge>
+            <LoanComplianceWidget />
+            <LoanAlerts />
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
-            <div className="lg:col-span-1">
-              <QuickActions />
+          <div className="mt-8">
+            <RegulatoryPanel />
+          </div>
+        </div>
+        
+        {/* Business Growth Advisor Section */}
+        <div className="mb-16">
+          <div className="text-center mb-12">
+            <div className="inline-flex items-center gap-3 bg-secondary/20 px-6 py-3 rounded-full mb-4">
+              <TrendingUp className="h-6 w-6 text-primary" />
+              <span className="text-primary font-semibold">Business Growth Advisor</span>
             </div>
-            <div className="lg:col-span-1">
-              <FinancingOpportunities />
-            </div>
-            <div className="lg:col-span-1">
+            <h2 className="text-4xl font-bold text-foreground mb-4">Strategic Growth Insights</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Unlock market opportunities, analyze competitors, and accelerate your MSME growth with data-driven recommendations
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-8">
+            <QuickActions />
+            <FinancingOpportunities />
+            <div className="xl:col-span-2">
               <CompetitorAnalysis />
             </div>
-            <div className="lg:col-span-1">
-              <LearningResources />
-            </div>
           </div>
-        </section>
-        
-        {/* Footer Section */}
-        <footer className="pt-8 mt-12 border-t border-border bg-gradient-to-r from-muted/30 to-muted/10 rounded-t-xl">
-          <div className="text-center space-y-3 p-6">
-            <div className="flex items-center justify-center gap-2 mb-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-primary to-primary-dark rounded-lg flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-sm">AB</span>
+          
+          <div className="mt-8">
+            <LearningResources />
+          </div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-primary text-white py-16">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            <div>
+              <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+              <div className="space-y-3 text-white/80">
+                <div className="flex items-center gap-2">
+                  <Phone className="h-4 w-4" />
+                  <span>+91 22 6652 5000</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <Mail className="h-4 w-4" />
+                  <span>customercare@adityabirlacapital.com</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <MapPin className="h-4 w-4" />
+                  <span>Mumbai, Maharashtra, India</span>
+                </div>
               </div>
-              <span className="font-semibold text-foreground">Aditya Birla Finance Limited</span>
             </div>
-            <p className="text-sm text-muted-foreground font-medium">
-              © 2024 Aditya Birla Finance Limited. All rights reserved.
-            </p>
-            <p className="text-sm text-muted-foreground bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-semibold">
-              Powered by AI-driven insights for better financial decisions
-            </p>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4">Careers</h3>
+              <div className="space-y-2 text-white/80">
+                <div>Aditya Birla Group Leadership Programme</div>
+                <div>Global Manufacturing and Leadership Program</div>
+                <div>Decentralisation of Ranking Services</div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4">Quick Links</h3>
+              <div className="space-y-2 text-white/80">
+                <div>Privacy Notice</div>
+                <div>Grievance Notice</div>
+                <div>Job Portal</div>
+                <div>Terms & Conditions</div>
+              </div>
+            </div>
+            
+            <div>
+              <h3 className="text-xl font-bold mb-4">Stay Updated</h3>
+              <p className="text-white/80 mb-4">Subscribe to our newsletter for the latest news straight to your inbox.</p>
+              <Button variant="outline" className="border-white text-white hover:bg-white hover:text-primary">
+                Subscribe
+              </Button>
+            </div>
           </div>
-        </footer>
-      </main>
+          
+          <div className="border-t border-white/20 pt-8 text-center text-white/80">
+            <p>© 2024 All Rights Reserved - Aditya Birla Management Corporation Pvt. Ltd.</p>
+            <p className="mt-2">Powered by AI-driven insights for MSME growth and financial excellence.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
