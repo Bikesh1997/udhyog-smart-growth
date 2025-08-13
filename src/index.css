@@ -213,15 +213,13 @@ All colors MUST be HSL.
 
   /* Enhanced card animations */
   .card-elevated {
-    @apply shadow-card hover:shadow-hover transform hover:-translate-y-2;
-    @apply transition-all duration-300 ease-out;
-    @apply border border-border/50 hover:border-primary/20;
+    @apply bg-card border border-border/20 shadow-md hover:shadow-lg transition-all duration-300 rounded-xl;
   }
   
   .card-interactive {
-    @apply cursor-pointer hover:shadow-elegant transform hover:-translate-y-1 hover:scale-[1.02];
+    @apply cursor-pointer hover:shadow-lg transform hover:-translate-y-1 hover:scale-[1.02];
     @apply transition-all duration-300 ease-out;
-    @apply hover:border-primary/30;
+    @apply hover:border-primary/20;
   }
 
   /* Interactive elements */
