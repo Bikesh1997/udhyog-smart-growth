@@ -87,11 +87,11 @@ const Index = () => {
           <div className="max-w-7xl mx-auto">
             <div className="text-center space-y-8">
               <div className="flex items-center justify-center gap-4">
-                <img 
-                  src="/lovable-uploads/ad8a5a9e-0db9-47d7-8fea-a24e25d8d4de.png" 
-                  alt="Aditya Birla Group" 
-                  className="h-12 w-auto"
-                />
+              <img 
+src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : ''}logo.png`}
+alt="Aditya Birla Group" 
+                className="h-12 w-auto"
+              />
                 <div className="text-left border-l border-border pl-4">
                   <div className="text-xl font-bold text-foreground">Finance Limited</div>
                   <div className="text-muted-foreground text-sm">Smart Financial Solutions for MSMEs</div>

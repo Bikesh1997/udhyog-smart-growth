@@ -14,8 +14,8 @@ const AdityaBirlaHeader = () => {
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-4">
               <img 
-                src="/lovable-uploads/ad8a5a9e-0db9-47d7-8fea-a24e25d8d4de.png" 
-                alt="Aditya Birla Group" 
+src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : ''}logo.png`}
+alt="Aditya Birla Group" 
                 className="h-12 w-auto"
               />
               <div className="border-l border-border pl-4">

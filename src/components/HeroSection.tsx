@@ -55,14 +55,14 @@ const HeroSection = ({ onStartAnalysis }: HeroSectionProps) => {
               Do My Smart Analysis
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
-            <Button 
+            {/* <Button 
               size="lg" 
               variant="outline" 
               className="border-2 border-white text-white hover:bg-white hover:text-primary backdrop-blur-sm transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-10 py-5 text-lg font-semibold rounded-full"
             >
               <TrendingUp className="mr-2 h-5 w-5" />
               Explore Solutions
-            </Button>
+            </Button> */}
           </div>
           
           {/* Key Stats - Corporate Style */}
