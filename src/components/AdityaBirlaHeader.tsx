@@ -12,12 +12,14 @@ const AdityaBirlaHeader = () => {
       <div className="container mx-auto px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-elegant glow-on-hover transition-all duration-300">
-                <span className="text-primary-foreground font-bold text-xl">AB</span>
-              </div>
-              <div>
-                <h1 className="font-bold text-xl text-foreground tracking-tight">Aditya Birla Finance</h1>
+            <div className="flex items-center gap-4">
+              <img 
+                src="/lovable-uploads/ad8a5a9e-0db9-47d7-8fea-a24e25d8d4de.png" 
+                alt="Aditya Birla Group" 
+                className="h-12 w-auto"
+              />
+              <div className="border-l border-border pl-4">
+                <h1 className="font-bold text-xl text-foreground tracking-tight">Finance Limited</h1>
                 <p className="text-xs text-muted-foreground font-medium">Smart Financial Solutions for MSMEs</p>
               </div>
             </div>

@@ -18,47 +18,55 @@ const Index = () => {
       <AdityaBirlaHeader />
       <HeroSection />
       
-      <main className="py-20">
-        {/* Welcome Section - Corporate Style */}
-        <section className="bg-gradient-to-b from-muted/30 to-background py-16">
+      <main className="py-0">
+        {/* Welcome Section - Premium Corporate Style */}
+        <section className="bg-gradient-to-b from-background to-muted/20 py-24">
           <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="grid lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <div className="flex items-center gap-3 mb-6">
-                    <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2">
+            <div className="max-w-7xl mx-auto">
+              <div className="grid lg:grid-cols-3 gap-16 items-center">
+                <div className="lg:col-span-2">
+                  <div className="flex items-center gap-3 mb-8">
+                    <Badge className="bg-primary text-primary-foreground border-0 px-6 py-3 text-sm font-medium">
                       <Star className="h-4 w-4 mr-2" />
                       Premium MSME Partner
                     </Badge>
                   </div>
-                  <h2 className="text-section-title text-foreground mb-6">
+                  <h2 className="text-display text-foreground mb-8">
                     Welcome back, 
-                    <span className="block text-primary">Rajesh Kumar</span>
+                    <span className="block text-primary mt-2">Rajesh Kumar</span>
                   </h2>
-                  <p className="text-xl text-muted-foreground leading-relaxed mb-8">
+                  <p className="text-xl text-muted-foreground leading-relaxed mb-12 max-w-2xl">
                     Access your intelligent dashboard to manage loans, track compliance, 
-                    and discover growth opportunities tailored for your business.
+                    and discover growth opportunities tailored for your business success.
                   </p>
-                  <div className="flex flex-wrap gap-6 text-sm">
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-success" />
-                      <span>Last login: Today at 9:30 AM</span>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border/30">
+                      <CheckCircle className="h-6 w-6 text-success flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-foreground">Last Login</div>
+                        <div className="text-muted-foreground text-sm">Today at 9:30 AM</div>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <CheckCircle className="h-5 w-5 text-success" />
-                      <span>Account balance: ₹2,45,000</span>
+                    <div className="flex items-center gap-3 p-4 bg-card rounded-xl border border-border/30">
+                      <CheckCircle className="h-6 w-6 text-success flex-shrink-0" />
+                      <div>
+                        <div className="font-medium text-foreground">Account Balance</div>
+                        <div className="text-muted-foreground text-sm">₹2,45,000</div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div className="lg:text-right">
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50">
-                      <div className="text-2xl font-bold text-primary mb-2">98.5%</div>
-                      <div className="text-sm text-muted-foreground">Compliance Score</div>
+                <div className="lg:col-span-1">
+                  <div className="grid grid-cols-1 gap-6">
+                    <div className="bg-gradient-to-br from-primary/5 to-primary/10 p-8 rounded-3xl border border-primary/20">
+                      <div className="text-4xl font-bold text-primary mb-3">98.5%</div>
+                      <div className="text-lg font-medium text-foreground mb-1">Compliance Score</div>
+                      <div className="text-muted-foreground text-sm">Industry leading</div>
                     </div>
-                    <div className="bg-card/50 backdrop-blur-sm p-6 rounded-2xl border border-border/50">
-                      <div className="text-2xl font-bold text-success mb-2">₹15L</div>
-                      <div className="text-sm text-muted-foreground">Available Credit</div>
+                    <div className="bg-gradient-to-br from-secondary/5 to-secondary/10 p-8 rounded-3xl border border-secondary/20">
+                      <div className="text-4xl font-bold text-secondary mb-3">₹15L</div>
+                      <div className="text-lg font-medium text-foreground mb-1">Available Credit</div>
+                      <div className="text-muted-foreground text-sm">Ready to deploy</div>
                     </div>
                   </div>
                 </div>
@@ -67,39 +75,43 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Our Solutions - Corporate Style */}
-        <section className="py-20 bg-background">
+        {/* SMART Compliance Manager - Corporate Style */}
+        <section className="py-32 bg-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <Badge className="bg-primary/10 text-primary border-primary/20 px-4 py-2 mb-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <Badge className="bg-primary text-primary-foreground border-0 px-6 py-3 text-sm font-medium mb-8">
                   <Shield className="h-4 w-4 mr-2" />
                   SMART Compliance Manager
                 </Badge>
-                <h2 className="text-section-title text-foreground mb-6">
-                  Intelligent Loan Management & Compliance
+                <h2 className="text-display text-foreground mb-8">
+                  Intelligent Loan Management
+                  <span className="block text-primary mt-2">& Compliance Automation</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
                   Automate compliance tracking, manage EMI schedules, and stay ahead of regulatory changes 
                   with our AI-powered platform designed specifically for MSMEs.
                 </p>
               </div>
               
-              <div className="grid lg:grid-cols-2 gap-8 mb-12">
-                <div className="lg:col-span-1 space-y-8">
+              <div className="grid lg:grid-cols-2 gap-16 mb-20">
+                <div className="space-y-12">
                   <EnhancedLoanStatus />
                   <LoanComplianceWidget />
                 </div>
-                <div className="lg:col-span-1 space-y-8">
+                <div className="space-y-12">
                   <LoanAlerts />
                   <RegulatoryPanel />
                 </div>
               </div>
               
               <div className="text-center">
-                <Button size="lg" className="bg-primary hover:bg-primary-dark px-8 py-4">
+                <Button 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary-dark transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-12 py-6 text-lg font-semibold rounded-full shadow-xl"
+                >
                   View Complete Compliance Dashboard
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-3 h-5 w-5" />
                 </Button>
               </div>
             </div>
@@ -107,37 +119,42 @@ const Index = () => {
         </section>
         
         {/* Business Growth Advisor - Corporate Style */}
-        <section className="py-20 bg-gradient-to-b from-secondary/5 to-background">
+        <section className="py-32 bg-gradient-to-b from-secondary/5 to-background">
           <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center mb-16">
-                <Badge className="bg-secondary/20 text-secondary border-secondary/30 px-4 py-2 mb-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <Badge className="bg-secondary text-white border-0 px-6 py-3 text-sm font-medium mb-8">
                   <TrendingUp className="h-4 w-4 mr-2" />
                   Business Growth Advisor
                 </Badge>
-                <h2 className="text-section-title text-foreground mb-6">
-                  AI-Powered Growth Insights for Your Business
+                <h2 className="text-display text-foreground mb-8">
+                  AI-Powered Growth Insights
+                  <span className="block text-secondary mt-2">for Your Business Success</span>
                 </h2>
-                <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+                <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
                   Discover market opportunities, benchmark against competitors, and accelerate your 
-                  business growth with personalized insights and financing recommendations.
+                  business growth with personalized insights and intelligent financing recommendations.
                 </p>
               </div>
               
-              <div className="grid lg:grid-cols-2 gap-8 mb-12">
-                <div className="lg:col-span-1 space-y-8">
+              <div className="grid lg:grid-cols-2 gap-16 mb-20">
+                <div className="space-y-12">
                   <QuickActions />
                   <FinancingOpportunities />
                 </div>
-                <div className="lg:col-span-1 space-y-8">
+                <div className="space-y-12">
                   <CompetitorAnalysis />
                   <LearningResources />
                 </div>
               </div>
               
               <div className="text-center">
-                <Button size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary/10 px-8 py-4">
-                  <Users className="mr-2 h-5 w-5" />
+                <Button 
+                  size="lg" 
+                  variant="outline" 
+                  className="border-2 border-secondary text-secondary hover:bg-secondary hover:text-white transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-12 py-6 text-lg font-semibold rounded-full"
+                >
+                  <Users className="mr-3 h-5 w-5" />
                   Explore All Growth Solutions
                 </Button>
               </div>
@@ -145,56 +162,74 @@ const Index = () => {
           </div>
         </section>
         
-        {/* Corporate Footer */}
-        <footer className="bg-gradient-to-b from-muted/50 to-muted py-16 border-t border-border">
+        {/* Premium Corporate Footer */}
+        <footer className="bg-gradient-to-b from-background via-muted/30 to-muted py-24 border-t border-border">
           <div className="container mx-auto px-6">
-            <div className="max-w-6xl mx-auto">
-              <div className="text-center space-y-8">
-                <div className="flex items-center justify-center gap-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-primary to-primary-dark rounded-xl flex items-center justify-center shadow-elegant">
-                    <span className="text-primary-foreground font-bold text-xl">AB</span>
-                  </div>
-                  <div className="text-left">
-                    <div className="text-xl font-bold text-foreground">Aditya Birla Finance Limited</div>
-                    <div className="text-sm text-muted-foreground">Smart Financial Solutions for MSMEs</div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8">
-                  <div className="text-center">
-                    <h4 className="font-semibold text-foreground mb-3">Quick Links</h4>
-                    <div className="space-y-2 text-muted-foreground">
-                      <div>Loan Products</div>
-                      <div>Interest Rates</div>
-                      <div>Apply Online</div>
-                      <div>EMI Calculator</div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="font-semibold text-foreground mb-3">Support</h4>
-                    <div className="space-y-2 text-muted-foreground">
-                      <div>Customer Care</div>
-                      <div>Branch Locator</div>
-                      <div>FAQ</div>
-                      <div>Grievance Redressal</div>
-                    </div>
-                  </div>
-                  <div className="text-center">
-                    <h4 className="font-semibold text-foreground mb-3">Resources</h4>
-                    <div className="space-y-2 text-muted-foreground">
-                      <div>Financial Literacy</div>
-                      <div>Business Insights</div>
-                      <div>Regulatory Updates</div>
-                      <div>Investment Tips</div>
-                    </div>
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center space-y-12">
+                <div className="flex items-center justify-center gap-4">
+                  <img 
+                    src="/lovable-uploads/ad8a5a9e-0db9-47d7-8fea-a24e25d8d4de.png" 
+                    alt="Aditya Birla Group" 
+                    className="h-16 w-auto"
+                  />
+                  <div className="text-left border-l border-border pl-4">
+                    <div className="text-2xl font-bold text-foreground">Finance Limited</div>
+                    <div className="text-muted-foreground">Smart Financial Solutions for MSMEs</div>
                   </div>
                 </div>
                 
-                <div className="border-t border-border pt-8 space-y-4">
-                  <p className="text-muted-foreground">
-                    © 2024 Aditya Birla Finance Limited. All rights reserved.
-                  </p>
-                  <p className="text-sm bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent font-semibold">
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-12 py-12">
+                  <div className="text-center md:text-left">
+                    <h4 className="font-bold text-foreground mb-6 text-lg">Loan Products</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div className="hover:text-primary cursor-pointer transition-colors">Business Loans</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Working Capital</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Equipment Finance</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">EMI Calculator</div>
+                    </div>
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h4 className="font-bold text-foreground mb-6 text-lg">Platform</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div className="hover:text-primary cursor-pointer transition-colors">Compliance Manager</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Growth Advisor</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Digital Dashboard</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Mobile App</div>
+                    </div>
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h4 className="font-bold text-foreground mb-6 text-lg">Support</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div className="hover:text-primary cursor-pointer transition-colors">Customer Care</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Branch Locator</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">FAQ & Help</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Grievance Portal</div>
+                    </div>
+                  </div>
+                  <div className="text-center md:text-left">
+                    <h4 className="font-bold text-foreground mb-6 text-lg">Resources</h4>
+                    <div className="space-y-3 text-muted-foreground">
+                      <div className="hover:text-primary cursor-pointer transition-colors">Financial Literacy</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Business Insights</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Market Reports</div>
+                      <div className="hover:text-primary cursor-pointer transition-colors">Regulatory Updates</div>
+                    </div>
+                  </div>
+                </div>
+                
+                <div className="border-t border-border pt-12 space-y-6">
+                  <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+                    <p className="text-muted-foreground">
+                      © 2024 Aditya Birla Finance Limited. All rights reserved.
+                    </p>
+                    <div className="flex items-center gap-6 text-sm text-muted-foreground">
+                      <span className="hover:text-primary cursor-pointer transition-colors">Privacy Policy</span>
+                      <span className="hover:text-primary cursor-pointer transition-colors">Terms of Service</span>
+                      <span className="hover:text-primary cursor-pointer transition-colors">Cookie Policy</span>
+                    </div>
+                  </div>
+                  <p className="text-center bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent font-bold text-lg">
                     Powered by AI-driven insights for smarter financial decisions
                   </p>
                 </div>
