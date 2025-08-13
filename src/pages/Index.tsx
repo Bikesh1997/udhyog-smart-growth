@@ -5,6 +5,7 @@ import SmartAnalysisForm from "@/components/SmartAnalysisForm";
 import LoadingAnimation from "@/components/LoadingAnimation";
 import SmartAnalysisResults from "@/components/SmartAnalysisResults";
 import MSMENewsSection from "@/components/MSMENewsSection";
+import MuneemjiChatbot from "@/components/MuneemjiChatbot";
 
 interface FormData {
   msmeNumber: string;
@@ -156,6 +157,13 @@ alt="Aditya Birla Group"
           </div>
         </div>
       </footer>
+      
+      {/* Muneem Ji Chatbot */}
+      <MuneemjiChatbot onNavigate={(section) => {
+        // Handle navigation to different sections
+        console.log('Navigate to:', section);
+        // You can add logic here to scroll to sections or change page state
+      }} />
     </div>
   );
 };

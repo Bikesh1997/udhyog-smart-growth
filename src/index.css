@@ -280,4 +280,89 @@ All colors MUST be HSL.
     0%, 100% { opacity: 1; }
     50% { opacity: 0.7; transform: scale(1.05); }
   }
+
+  /* Muneem Ji Chatbot Animations */
+  @keyframes mj-bob {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  @keyframes mj-blink {
+    0%, 92%, 100% { transform: scaleY(1); }
+    94% { transform: scaleY(0.15); }
+  }
+
+  @keyframes mj-wave {
+    0%, 100% { transform: rotate(0deg); }
+    25% { transform: rotate(12deg); }
+    75% { transform: rotate(-10deg); }
+  }
+
+  @keyframes mj-panel-in {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+
+  @keyframes mj-panel-out {
+    from { transform: translateX(0); opacity: 1; }
+    to { transform: translateX(100%); opacity: 0; }
+  }
+
+  @keyframes mj-pop {
+    from { transform: scale(0.92); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+
+  @keyframes mj-bubble {
+    from { transform: translateY(6px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  @keyframes mj-typing {
+    0%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-4px); }
+  }
+
+  @keyframes mj-confetti {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-100px) rotate(720deg); opacity: 0; }
+  }
+
+  /* Apply animations */
+  .muneemji-launcher {
+    animation: mj-bob 2s ease-in-out infinite;
+  }
+
+  .muneemji-launcher:hover {
+    animation: mj-wave 0.6s ease-in-out;
+  }
+
+  .muneemji-avatar {
+    animation: mj-blink 4s ease-in-out infinite;
+  }
+
+  .muneemji-panel {
+    animation: mj-panel-in 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .mj-typing-dot {
+    animation: mj-typing 1.4s ease-in-out infinite;
+  }
+
+  .option-chip:hover {
+    transform: translateY(-1px);
+  }
+
+  /* Reduced motion support */
+  @media (prefers-reduced-motion: reduce) {
+    .muneemji-launcher,
+    .muneemji-avatar,
+    .muneemji-panel,
+    .mj-typing-dot,
+    .option-chip,
+    .message-bubble {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 }
