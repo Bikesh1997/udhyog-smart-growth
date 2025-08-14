@@ -22,6 +22,7 @@ import {
   AlertTriangle,
   ShieldCheck,
   ArrowRight,
+  Download,
 } from "lucide-react";
 import {
   LineChart,
@@ -195,17 +196,19 @@ const KPI: React.FC<{
   badge?: string;
   tone?: "default" | "good" | "warn" | "bad";
 }> = ({ title, value, icon, badge, tone = "default" }) => (
-  <Card className="hover:shadow-md transition-shadow h-full">
-    <CardHeader className="pb-2">
+  <Card className="hover:shadow-lg transition-all duration-300 h-full border-2 border-muted/50 hover:border-primary/30">
+    <CardHeader className="pb-3">
       <div className="flex items-center justify-between">
-        <CardTitle className="text-sm font-medium text-muted-foreground">{title}</CardTitle>
-        {icon}
+        <CardTitle className="text-sm font-semibold text-muted-foreground uppercase tracking-wide">{title}</CardTitle>
+        <div className="p-2 rounded-lg bg-primary/10">
+          {icon}
+        </div>
       </div>
     </CardHeader>
     <CardContent className="pt-0">
       <div className="flex items-end justify-between">
         <div
-          className={`text-2xl font-semibold ${
+          className={`text-2xl font-bold ${
             tone === "good"
               ? "text-green-600"
               : tone === "bad"
@@ -217,7 +220,7 @@ const KPI: React.FC<{
         >
           {value}
         </div>
-        {badge && <Badge variant="secondary">{badge}</Badge>}
+        {badge && <Badge variant="secondary" className="text-xs">{badge}</Badge>}
       </div>
     </CardContent>
   </Card>
@@ -295,45 +298,48 @@ const FinancialHealthDetails: React.FC = () => {
     }
   }, [step]);
 
-  // ---- STEP 1: Connect to Accounting Software (removed "Upload Financial Statements") ----
+  // ---- STEP 1: Connect to Accounting Software ----
   if (step === 1) {
     return (
-      <div className="space-y-6">
-        <div className="text-center space-y-1">
-          <h2 className="text-2xl font-bold">Connect to Accounting Software</h2>
-          <p className="text-muted-foreground">Use Tally or Zoho Books to sync data</p>
+      <div className="max-w-2xl mx-auto space-y-8 p-4">
+        <div className="text-center space-y-2">
+          <h2 className="text-3xl font-bold">Connect to Accounting Software</h2>
+          <p className="text-muted-foreground text-lg">Use Tally or Zoho Books to sync data</p>
         </div>
 
-        <div className="grid gap-4 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 max-w-lg mx-auto">
           <Button
             variant="outline"
-            className="justify-start gap-3 p-4 h-auto hover:bg-primary/5 transition-all border-dashed"
+            className="flex flex-col items-center justify-center gap-4 p-8 h-32 hover:bg-primary/5 transition-all border-2 border-dashed hover:border-primary/50"
             onClick={() => handleSoftwareConnect("tally")}
           >
-            <img src="/logos/tally.png" alt="Tally" width={28} height={28} />
-            <span className="font-medium">Tally</span>
+            <FileText className="w-8 h-8 text-primary" />
+            <span className="font-semibold text-lg">Tally</span>
           </Button>
 
           <Button
-            variant="outline"
-            className="justify-start gap-3 p-4 h-auto hover:bg-primary/5 transition-all border-dashed"
+            variant="outline" 
+            className="flex flex-col items-center justify-center gap-4 p-8 h-32 hover:bg-primary/5 transition-all border-2 border-dashed hover:border-primary/50"
             onClick={() => handleSoftwareConnect("zoho")}
           >
-            <img src="/logos/zoho.png" alt="Zoho Books" width={28} height={28} />
-            <span className="font-medium">Zoho Books</span>
+            <Building className="w-8 h-8 text-primary" />
+            <span className="font-semibold text-lg">Zoho Books</span>
           </Button>
         </div>
 
-        <Card className="border-dashed">
-          <CardHeader className="pb-2">
-            <CardTitle className="text-base">Why connect?</CardTitle>
-            <CardDescription>Get dynamic cash flow forecasts, risk alerts, and tailored credit options.</CardDescription>
+        <Card className="border-2 border-dashed border-primary/20 bg-primary/5">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-xl flex items-center gap-2">
+              <ShieldCheck className="w-5 h-5 text-primary" />
+              Why connect?
+            </CardTitle>
+            <CardDescription className="text-base">Get dynamic cash flow forecasts, risk alerts, and tailored credit options.</CardDescription>
           </CardHeader>
           <CardContent className="pt-0">
-            <ul className="text-sm text-muted-foreground space-y-1">
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" /> Faster insights</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" /> Automated risk monitoring</li>
-              <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-600" /> Personalized credit options</li>
+            <ul className="text-sm space-y-3">
+              <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-600 flex-shrink-0" /> <span>Faster insights with real-time data</span></li>
+              <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-600 flex-shrink-0" /> <span>Automated risk monitoring</span></li>
+              <li className="flex items-center gap-3"><Check className="w-5 h-5 text-green-600 flex-shrink-0" /> <span>Personalized credit options</span></li>
             </ul>
           </CardContent>
         </Card>
@@ -341,48 +347,50 @@ const FinancialHealthDetails: React.FC = () => {
     );
   }
 
-  // ---- STEP 2: Document Stepper (No labels) ----
+  // ---- STEP 2: Document Stepper ----
   if (step === 2) {
     const current = docStep;
     const currentDoc = docSteps[docStep];
 
     return (
-      <div className="space-y-6">
+      <div className="max-w-2xl mx-auto space-y-8 p-4">
         <Stepper current={current} />
 
-        <Card className="border-dashed">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <currentDoc.icon className="w-5 h-5" /> Provide {currentDoc.id.replace(/([A-Z])/g, " $1").toUpperCase()}
+        <Card className="border-2 border-dashed border-primary/20">
+          <CardHeader className="text-center">
+            <CardTitle className="flex items-center justify-center gap-3 text-xl">
+              <currentDoc.icon className="w-6 h-6 text-primary" /> 
+              Provide {currentDoc.id.replace(/([A-Z])/g, " $1").toUpperCase()}
             </CardTitle>
-            <CardDescription>Tick once the document is connected or uploaded.</CardDescription>
+            <CardDescription className="text-base">Tick once the document is connected or uploaded.</CardDescription>
           </CardHeader>
-          <CardContent>
-            <div className="flex items-center gap-2">
+          <CardContent className="flex flex-col items-center space-y-6">
+            <div className="flex items-center justify-center gap-3 p-4 rounded-lg bg-muted/50 min-w-48">
               <Checkbox
                 id={currentDoc.id}
                 checked={checked[currentDoc.id]}
                 onCheckedChange={(v) => handleCheckboxChange(currentDoc.id, Boolean(v))}
+                className="w-5 h-5"
               />
-              <Label htmlFor={currentDoc.id} className="flex items-center gap-2 cursor-pointer">
-                <ShieldCheck className="w-4 h-4 text-primary" /> Confirmed
+              <Label htmlFor={currentDoc.id} className="flex items-center gap-2 cursor-pointer text-base font-medium">
+                <ShieldCheck className="w-5 h-5 text-primary" /> Confirmed
               </Label>
             </div>
           </CardContent>
         </Card>
 
         <Button
-          className="w-full h-11"
+          className="w-full h-12 text-base font-semibold"
           disabled={!checked[currentDoc.id]}
           onClick={handleNextDocStep}
         >
           {docStep < docSteps.length - 1 ? (
             <span className="flex items-center gap-2">
-              Next <ArrowRight className="w-4 h-4" />
+              Next <ArrowRight className="w-5 h-5" />
             </span>
           ) : (
             <span className="flex items-center gap-2">
-              Run AI Assessment <Activity className="w-4 h-4" />
+              Run AI Assessment <Activity className="w-5 h-5" />
             </span>
           )}
         </Button>
@@ -393,22 +401,22 @@ const FinancialHealthDetails: React.FC = () => {
   // ---- STEP 3: Loading + Promo ----
   if (step === 3) {
     return (
-      <div className="flex flex-col items-center justify-center h-80 space-y-6 text-center">
-        <div className="flex items-center gap-3">
-          <Loader2 className="animate-spin h-6 w-6 text-primary" />
-          <p className="text-lg font-medium">Analyzing your financial data…</p>
+      <div className="flex flex-col items-center justify-center min-h-96 space-y-8 text-center p-4">
+        <div className="flex items-center gap-4">
+          <Loader2 className="animate-spin h-8 w-8 text-primary" />
+          <p className="text-xl font-semibold">Analyzing your financial data…</p>
         </div>
 
-        <Card className="w-full max-w-md border-2 border-primary/20 shadow-sm">
-          <CardHeader className="pb-2">
-            <CardTitle>Smart Business Perks</CardTitle>
-            <CardDescription>Insights & flexible credit options tailored to you</CardDescription>
+        <Card className="w-full max-w-lg border-2 border-primary/20 shadow-lg">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-xl">Smart Business Perks</CardTitle>
+            <CardDescription className="text-base">Insights & flexible credit options tailored to you</CardDescription>
           </CardHeader>
-          <CardContent className="pt-0">
-            <p className="text-sm mb-3">Unlock proactive facilities aligned to upcoming cash needs.</p>
-            <div className="bg-primary/10 p-3 rounded-lg text-center">
-              <p className="font-semibold text-primary">ABCL Advantage</p>
-              <p className="text-sm text-muted-foreground">Preferential rates • Quick onboarding</p>
+          <CardContent className="pt-0 space-y-4">
+            <p className="text-base">Unlock proactive facilities aligned to upcoming cash needs.</p>
+            <div className="bg-primary/10 p-4 rounded-lg text-center border border-primary/20">
+              <p className="font-bold text-primary text-lg">ABCL Advantage</p>
+              <p className="text-muted-foreground">Preferential rates • Quick onboarding</p>
             </div>
           </CardContent>
         </Card>
@@ -425,135 +433,162 @@ const FinancialHealthDetails: React.FC = () => {
       : "bad";
 
   return (
-    <div className="space-y-6">
-      <div className="text-center space-y-1">
-        <h2 className="text-2xl font-bold">AI-Powered Financial Health & Risk Assessment</h2>
-        <p className="text-muted-foreground">
+    <div className="space-y-8 p-4">
+      <div className="text-center space-y-3 max-w-3xl mx-auto">
+        <h2 className="text-3xl font-bold">AI-Powered Financial Health & Risk Assessment</h2>
+        <p className="text-muted-foreground text-lg">
           Dynamic insights from {selectedSoftware ? selectedSoftware.toUpperCase() : "your data"}
         </p>
       </div>
 
       {/* KPIs */}
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4 max-w-7xl mx-auto">
         <KPI
           title="Cash Flow"
           value={analysis ? analysis.kpis.cashFlowStatus : "—"}
-          icon={<TrendingUp className="w-4 h-4 text-muted-foreground" />}
+          icon={<TrendingUp className="w-5 h-5 text-muted-foreground" />}
           tone={tone as any}
           badge="AI Rated"
         />
         <KPI
           title="Revenue Trend (MoM)"
           value={`${analysis ? analysis.kpis.revenueGrowthPct : 0}%`}
-          icon={<Activity className="w-4 h-4 text-muted-foreground" />}
+          icon={<Activity className="w-5 h-5 text-muted-foreground" />}
           tone={analysis && analysis.kpis.revenueGrowthPct >= 10 ? "good" : "default"}
           badge="Momentum"
         />
         <KPI
           title="Expense Pattern"
           value={analysis ? analysis.kpis.expenseOptimizationNote : "—"}
-          icon={<FileText className="w-4 h-4 text-muted-foreground" />}
+          icon={<FileText className="w-5 h-5 text-muted-foreground" />}
           badge="Optimization"
         />
         <KPI
           title="Industry Benchmark"
           value={`${analysis ? analysis.kpis.benchmarkPercentile : 0}th pct.`}
-          icon={<ShieldCheck className="w-4 h-4 text-muted-foreground" />}
+          icon={<ShieldCheck className="w-5 h-5 text-muted-foreground" />}
           badge="Peer Rank"
         />
       </div>
 
       {/* Forecast + Shortfalls */}
-      <Card className="hover:shadow-sm transition-shadow">
-        <CardHeader>
-          <CardTitle className="flex items-center justify-between">
-            <span>Predictive Cash Flow (Next 90 Days)</span>
-            <Badge variant="secondary">30 / 60 / 90-day view</Badge>
-          </CardTitle>
-          <CardDescription>
-            AI forecasts upcoming cash positions and flags shortfalls vs your comfort threshold.
-          </CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          {analysis && (
-            <>
-              <ForecastChart data={analysis.forecast} threshold={analysis.threshold} />
-              {analysis.shortfalls.length > 0 ? (
-                <div className="space-y-2">
-                  <div className="text-sm font-medium flex items-center gap-2 text-amber-700">
-                    <AlertTriangle className="w-4 h-4" /> Shortfall windows detected:
+      <div className="max-w-7xl mx-auto">
+        <Card className="hover:shadow-lg transition-shadow border-2 border-muted/50">
+          <CardHeader>
+            <CardTitle className="flex items-center justify-between text-xl">
+              <span>Predictive Cash Flow (Next 90 Days)</span>
+              <Badge variant="secondary" className="text-sm">30 / 60 / 90-day view</Badge>
+            </CardTitle>
+            <CardDescription className="text-base">
+              AI forecasts upcoming cash positions and flags shortfalls vs your comfort threshold.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6">
+            {analysis && (
+              <>
+                <ForecastChart data={analysis.forecast} threshold={analysis.threshold} />
+                {analysis.shortfalls.length > 0 ? (
+                  <div className="space-y-3 p-4 bg-amber-50 rounded-lg border border-amber-200">
+                    <div className="text-base font-semibold flex items-center gap-2 text-amber-800">
+                      <AlertTriangle className="w-5 h-5" /> Shortfall windows detected:
+                    </div>
+                    <ul className="text-sm space-y-2">
+                      {analysis.shortfalls.map((w, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <span className="w-2 h-2 bg-amber-600 rounded-full mt-2 flex-shrink-0"></span>
+                          <span>Days {w.from}–{w.to} • Minimum {currencyFull(w.minCash)}. Suggest exploring ABCL working capital facility.</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                  <ul className="text-sm pl-5 space-y-1">
-                    {analysis.shortfalls.map((w, idx) => (
-                      <li key={idx} className="list-disc">
-                        Days {w.from}–{w.to} • Minimum {currencyFull(w.minCash)}. Suggest exploring ABCL working capital facility.
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : (
-                <div className="text-sm text-green-700">No shortfalls predicted. Liquidity looks comfortable.</div>
-              )}
-            </>
-          )}
-        </CardContent>
-      </Card>
+                ) : (
+                  <div className="text-base text-green-700 p-4 bg-green-50 rounded-lg border border-green-200 flex items-center gap-2">
+                    <Check className="w-5 h-5" />
+                    No shortfalls predicted. Liquidity looks comfortable.
+                  </div>
+                )}
+              </>
+            )}
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Risk Alerts */}
-      <Card className="hover:shadow-sm transition-shadow">
-        <CardHeader className="pb-3">
-          <CardTitle>Risk Alerts</CardTitle>
-          <CardDescription>Proactive flags to keep finances resilient</CardDescription>
-        </CardHeader>
-        <CardContent className="grid gap-3">
-          {analysis?.risks.map((r) => (
-            <div
-              key={r.id}
-              className="flex items-start justify-between rounded-lg border p-3 hover:bg-muted/30 transition-colors"
-            >
-              <div>
-                <div className="font-medium flex items-center gap-2">
-                  {r.title}
-                  <RiskBadge severity={r.severity} />
+      <div className="max-w-7xl mx-auto">
+        <Card className="hover:shadow-lg transition-shadow border-2 border-muted/50">
+          <CardHeader className="pb-4">
+            <CardTitle className="text-xl flex items-center gap-2">
+              <AlertTriangle className="w-6 h-6 text-amber-600" />
+              Risk Alerts
+            </CardTitle>
+            <CardDescription className="text-base">Proactive flags to keep finances resilient</CardDescription>
+          </CardHeader>
+          <CardContent className="grid gap-4">
+            {analysis?.risks.map((r) => (
+              <div
+                key={r.id}
+                className="flex items-start justify-between rounded-lg border-2 border-muted/50 p-4 hover:bg-muted/30 transition-all duration-300 hover:border-primary/30"
+              >
+                <div className="space-y-2">
+                  <div className="font-semibold flex items-center gap-3 text-base">
+                    {r.title}
+                    <RiskBadge severity={r.severity} />
+                  </div>
+                  <p className="text-muted-foreground">{r.detail}</p>
                 </div>
-                <p className="text-sm text-muted-foreground">{r.detail}</p>
               </div>
-            </div>
-          ))}
-        </CardContent>
-      </Card>
+            ))}
+          </CardContent>
+        </Card>
+      </div>
 
       {/* Pre-approved Credit Options */}
-      <Card className="border-primary/30 hover:shadow-sm transition-shadow">
-        <CardHeader>
-          <CardTitle>Pre‑approved Offers (ABCL)</CardTitle>
-          <CardDescription>Tailored credit options based on your cash flow profile</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {analysis?.offers.map((o) => (
-              <Card
-                key={o.id}
-                className="border hover:shadow-md transition-shadow"
-              >
-                <CardHeader className="pb-2">
-                  <CardTitle className="text-base">{o.name}</CardTitle>
-                  <CardDescription className="capitalize">{o.type.replaceAll("-", " ")}</CardDescription>
-                </CardHeader>
-                <CardContent className="pt-0 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="font-medium">{o.limit}</span>
-                    <Badge variant="secondary">{o.rate}</Badge>
-                  </div>
-                  <Button className="w-full mt-3" variant="default">
-                    View Offer
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </CardContent>
-      </Card>
+      <div className="max-w-7xl mx-auto">
+        <Card className="border-2 border-primary/30 hover:shadow-lg transition-shadow bg-primary/5">
+          <CardHeader>
+            <CardTitle className="text-xl flex items-center gap-2">
+              <CreditCard className="w-6 h-6 text-primary" />
+              Pre‑approved Offers (ABCL)
+            </CardTitle>
+            <CardDescription className="text-base">Tailored credit options based on your cash flow profile</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {analysis?.offers.map((o) => (
+                <Card
+                  key={o.id}
+                  className="border-2 border-muted/50 hover:shadow-lg transition-all duration-300 hover:border-primary/50 bg-white"
+                >
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-lg">{o.name}</CardTitle>
+                    <CardDescription className="capitalize text-base">{o.type.replace(/-/g, " ")}</CardDescription>
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="font-bold text-lg">{o.limit}</span>
+                      <Badge variant="secondary" className="text-sm">{o.rate}</Badge>
+                    </div>
+                    <Button className="w-full h-11 text-base font-semibold" variant="default">
+                      View Offer
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Export Report Button */}
+      <div className="max-w-7xl mx-auto flex justify-center pt-4">
+        <Button 
+          variant="outline" 
+          className="flex items-center gap-3 px-8 py-3 h-12 text-base font-semibold border-2 hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+        >
+          <Download className="w-5 h-5" />
+          Export Report
+        </Button>
+      </div>
     </div>
   );
 };
