@@ -45,7 +45,7 @@ const Index = () => {
       {pageState === 'hero' && (
         <>
           <HeroSection onStartAnalysis={handleStartAnalysis} />
-          <MSMENewsSection />
+          {/* <MSMENewsSection /> */}
         </>
       )}
 
@@ -89,7 +89,7 @@ const Index = () => {
             <div className="text-center space-y-8">
               <div className="flex items-center justify-center gap-4">
               <img 
-src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : ''}logo.png`}
+src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}logo.png`}
 alt="Aditya Birla Group" 
                 className="h-12 w-auto"
               />

@@ -34,11 +34,11 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const chatOptions = [
-    { id: 'compliance', label: 'Compliance Dashboard', icon: '📊' },
+    { id: 'compliance', label: 'Compliance', icon: '📊' },
     { id: 'loans', label: 'Loan Overview', icon: '💰' },
     { id: 'regulatory', label: 'Regulatory Updates', icon: '📋' },
     { id: 'growth', label: 'Growth Tips', icon: '📈' },
-    { id: 'msme', label: 'Latest MSME Updates', icon: '📰' },
+    { id: 'msme', label: 'MSME Updates', icon: '📰' },
     { id: 'financial', label: 'Financial Tips', icon: '💡' }
   ];
 
@@ -163,7 +163,8 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
             `}
           >
             <img
-              src="/lovable-uploads/generated-image.png"
+            src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
+
               alt="Muneem Ji"
               width={128}
               height={128}
@@ -183,14 +184,14 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
 
       {/* Chat Panel */}
       {isOpen && (
-        <div className="fixed inset-0 z-50 lg:inset-auto lg:bottom-6 lg:right-6 lg:h-[600px] lg:w-[400px]">
+        <div className="fixed inset-0 z-50 lg:inset-auto lg:bottom-6 lg:right-6 lg:h-[600px] lg:w-[430px]">
           <div className="h-full bg-white rounded-t-2xl lg:rounded-2xl shadow-2xl border border-border flex flex-col">
             {/* Header */}
             <div className="flex items-center justify-between p-4 border-b border-border bg-gradient-to-r from-primary to-primary/90 text-white rounded-t-2xl">
               <div className="flex items-center gap-3">
                 <img 
-                  src="/lovable-uploads/generated-image.png"
-                  alt="Muneem Ji"
+            src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
+            alt="Muneem Ji"
                   className="h-10 w-10 object-contain bg-white/20 rounded-full p-1"
                 />
                 <div>
@@ -241,21 +242,26 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
               {showOptions && !isTyping && (
                 <div className="space-y-2">
                   <p className="text-sm text-muted-foreground text-center">Namaste! Choose an option:</p>
-                  <div className="space-y-2">
-                    {chatOptions.map((option, index) => (
-                      <Button
-                        key={option.id}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => handleOptionClick(option)}
-                        className="justify-start gap-3 p-3 h-auto text-left border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200 w-full"
-                        style={{ animation: 'mj-pop 0.3s ease-out', animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
-                      >
-                        <span className="text-lg">{option.icon}</span>
-                        <span className="text-sm font-medium">{option.label}</span>
-                      </Button>
-                    ))}
-                  </div>
+                  <div className="grid grid-cols-2 gap-3">
+  {chatOptions.map((option, index) => (
+    <Button
+      key={option.id}
+      variant="outline"
+      size="sm"
+      onClick={() => handleOptionClick(option)}
+      className="justify-start gap-3 p-3 h-auto text-left border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200 w-full"
+      style={{
+        animation: 'mj-pop 0.3s ease-out',
+        animationDelay: `${index * 80}ms`,
+        animationFillMode: 'both',
+      }}
+    >
+      <span className="text-lg">{option.icon}</span>
+      <span className="text-sm font-medium">{option.label}</span>
+    </Button>
+  ))}
+</div>
+
                   <Button variant="ghost" size="sm" onClick={resetChat} className="w-full text-muted-foreground hover:text-foreground">
                     Reset Chat
                   </Button>
@@ -295,8 +301,8 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <img 
-                src="/lovable-uploads/generated-image.png"
-                alt="Muneem Ji"
+            src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
+            alt="Muneem Ji"
                 className="h-8 w-8 object-contain"
               />
               {selectedOption && chatOptions.find(opt => opt.id === selectedOption)?.label}

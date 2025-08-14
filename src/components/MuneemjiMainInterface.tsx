@@ -69,7 +69,7 @@ const MuneemjiMainInterface: React.FC<MuneemjiMainInterfaceProps> = ({ onNavigat
           className="h-20 w-20 rounded-full bg-white shadow-xl border-4 border-white hover:shadow-2xl transition-all duration-300 hover:scale-105"
         >
           <img
-            src="/lovable-uploads/generated-image.png"
+            src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
             alt="Muneem Ji"
             className="h-full w-full object-contain rounded-full"
           />
@@ -88,8 +88,8 @@ const MuneemjiMainInterface: React.FC<MuneemjiMainInterfaceProps> = ({ onNavigat
                 </Button>
               )}
               <img 
-                src="/lovable-uploads/generated-image.png"
-                alt="Muneem Ji"
+            src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
+            alt="Muneem Ji"
                 className="h-10 w-10 object-contain bg-muted/20 rounded-full p-1"
               />
               <div>

@@ -47,14 +47,14 @@ const HeroSection = ({ onStartAnalysis }: HeroSectionProps) => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-6 mb-16">
-            <Button 
+            {/* <Button 
               size="lg"
               onClick={onStartAnalysis}
               className="bg-gradient-to-r from-secondary to-secondary-dark text-secondary-foreground hover:from-secondary-light hover:to-secondary transform hover:-translate-y-1 hover:scale-105 transition-all duration-300 px-10 py-5 text-lg font-semibold rounded-full shadow-2xl border-2 border-secondary/20"
             >
               Do My Smart Analysis
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
+            </Button> */}
             {/* <Button 
               size="lg" 
               variant="outline" 
