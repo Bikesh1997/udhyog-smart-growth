@@ -2,6 +2,13 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
+import LoanOverviewDetails from '@/components/muneem-details/LoanOverviewDetails';
+import ComplianceDashboardDetails from '@/components/muneem-details/ComplianceDashboardDetails';
+import RegulatoryUpdatesDetails from '@/components/muneem-details/RegulatoryUpdatesDetails';
+import GrowthTipsDetails from '@/components/muneem-details/GrowthTipsDetails';
+import MSMEUpdatesDetails from '@/components/muneem-details/MSMEUpdatesDetails';
+import FinancialTipsDetails from '@/components/muneem-details/FinancialTipsDetails';
 
 interface Message {
   id: string;
@@ -21,6 +28,8 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   const [showOptions, setShowOptions] = useState(true);
   const [isTyping, setIsTyping] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -28,11 +37,9 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
     { id: 'compliance', label: 'Compliance Dashboard', icon: '📊' },
     { id: 'loans', label: 'Loan Overview', icon: '💰' },
     { id: 'regulatory', label: 'Regulatory Updates', icon: '📋' },
-    { id: 'growth', label: 'Business Growth Tips', icon: '📈' },
-    { id: 'tax', label: 'Tax & TDS Reminders', icon: '🧾' },
-    { id: 'reports', label: 'Financial Reports', icon: '📄' },
-    { id: 'apply', label: 'Apply for Loan', icon: '✋' },
-    { id: 'services', label: 'Other Services', icon: '🔧' }
+    { id: 'growth', label: 'Growth Tips', icon: '📈' },
+    { id: 'msme', label: 'Latest MSME Updates', icon: '📰' },
+    { id: 'financial', label: 'Financial Tips', icon: '💡' }
   ];
 
   const scrollToBottom = () => {
@@ -78,20 +85,23 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
         timestamp: new Date()
       };
       setMessages(prev => [...prev, botMessage]);
+      
+      // Open popup with detailed information
+      setSelectedOption(option.id);
+      setShowPopup(true);
+      
       if (onNavigate) onNavigate(option.id);
     }, 1500);
   };
 
   const getBotResponse = (optionId: string): string => {
     const responses: Record<string, string> = {
-      compliance: "Aapka compliance dashboard ready hai! Yahan aap apne saare regulatory requirements track kar sakte hain. Kya aap dashboard dekhna chahenge?",
-      loans: "Aapke liye best loan options mil gaye hain! Current rates aur eligibility check karne ke liye main aapko loan section mein le chalta hoon.",
-      regulatory: "Latest MSME regulations aur updates yahan hain. Government schemes aur policy changes ki complete information available hai.",
-      growth: "Business growth ke liye personalized tips ready hain! Market analysis aur competitor insights ke saath aapka growth plan dekhen.",
-      tax: "Tax filing dates aur TDS reminders set kar diye hain. Aapke pending tasks aur due dates ki complete list yahan hai.",
-      reports: "Financial reports generate karne ke liye options ready hain. Profit & Loss, Balance Sheet aur Cash Flow statements download kar sakte hain.",
-      apply: "Loan application process start karte hain! Aapki business profile ke basis pe pre-approved offers available hain.",
-      services: "Hamari additional services – CA consultation, business registration, compliance audit – sabki details yahan hain."
+      compliance: "Aapka compliance dashboard ready hai! Detailed information popup mein open ho raha hai.",
+      loans: "Aapke liye best loan options mil gaye hain! Details popup mein dekh sakte hain.",
+      regulatory: "Latest MSME regulations aur updates yahan hain. Popup mein complete information available hai.",
+      growth: "Business growth ke liye personalized tips ready hain! Popup mein detailed analysis dekhen.",
+      msme: "Latest MSME updates aur news popup mein available hain. Government schemes ki complete information dekhen.",
+      financial: "Financial tips aur recommendations popup mein ready hain. Daily tips aur essential advice dekhen."
     };
     return responses[optionId] || "Main aapki madad karne ke liye yahan hoon!";
   };
@@ -126,6 +136,25 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
     setMessages([]);
     setShowOptions(true);
     setIsTyping(false);
+  };
+
+  const renderDetailComponent = (optionId: string) => {
+    switch (optionId) {
+      case 'loans':
+        return <LoanOverviewDetails />;
+      case 'compliance':
+        return <ComplianceDashboardDetails />;
+      case 'regulatory':
+        return <RegulatoryUpdatesDetails />;
+      case 'growth':
+        return <GrowthTipsDetails />;
+      case 'msme':
+        return <MSMEUpdatesDetails />;
+      case 'financial':
+        return <FinancialTipsDetails />;
+      default:
+        return <div>Content not available</div>;
+    }
   };
 
   return (
@@ -225,19 +254,19 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
 
               {showOptions && !isTyping && (
                 <div className="space-y-2">
-                  <p className="text-sm text-muted-foreground text-center">Choose an option:</p>
-                  <div className="grid grid-cols-2 gap-2">
+                  <p className="text-sm text-muted-foreground text-center">Namaste! Choose an option:</p>
+                  <div className="space-y-2">
                     {chatOptions.map((option, index) => (
                       <Button
                         key={option.id}
                         variant="outline"
                         size="sm"
                         onClick={() => handleOptionClick(option)}
-                        className="justify-start gap-2 p-3 h-auto text-left border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200"
+                        className="justify-start gap-3 p-3 h-auto text-left border-2 hover:border-primary hover:bg-primary/5 transition-all duration-200 w-full"
                         style={{ animation: 'mj-pop 0.3s ease-out', animationDelay: `${index * 80}ms`, animationFillMode: 'both' }}
                       >
-                        <span className="text-base">{option.icon}</span>
-                        <span className="text-xs leading-tight">{option.label}</span>
+                        <span className="text-lg">{option.icon}</span>
+                        <span className="text-sm font-medium">{option.label}</span>
                       </Button>
                     ))}
                   </div>
@@ -268,6 +297,25 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
           </div>
         </div>
       )}
+
+      {/* Detail Popup */}
+      <Dialog open={showPopup} onOpenChange={setShowPopup}>
+        <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
+          <DialogHeader>
+            <DialogTitle className="flex items-center gap-2">
+              <img 
+                src="/lovable-uploads/generated-image.png"
+                alt="Muneem Ji"
+                className="h-8 w-8 object-contain"
+              />
+              {selectedOption && chatOptions.find(opt => opt.id === selectedOption)?.label}
+            </DialogTitle>
+          </DialogHeader>
+          <div className="space-y-4">
+            {selectedOption && renderDetailComponent(selectedOption)}
+          </div>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };
