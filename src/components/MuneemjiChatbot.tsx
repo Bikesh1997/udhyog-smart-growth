@@ -64,34 +64,11 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   }, [isOpen]);
 
   const handleOptionClick = (option: typeof chatOptions[0]) => {
-    setShowOptions(false);
-    setIsTyping(true);
-
-    const userMessage: Message = {
-      id: Date.now().toString(),
-      text: option.label,
-      isBot: false,
-      timestamp: new Date()
-    };
-
-    setMessages(prev => [...prev, userMessage]);
-
-    setTimeout(() => {
-      setIsTyping(false);
-      const botMessage: Message = {
-        id: (Date.now() + 1).toString(),
-        text: getBotResponse(option.id),
-        isBot: true,
-        timestamp: new Date()
-      };
-      setMessages(prev => [...prev, botMessage]);
-      
-      // Open popup with detailed information
-      setSelectedOption(option.id);
-      setShowPopup(true);
-      
-      if (onNavigate) onNavigate(option.id);
-    }, 1500);
+    // Directly open popup without chat response
+    setSelectedOption(option.id);
+    setShowPopup(true);
+    
+    if (onNavigate) onNavigate(option.id);
   };
 
   const getBotResponse = (optionId: string): string => {
@@ -221,7 +198,16 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
                   <p className="text-xs opacity-90">Digital Business Saathi</p>
                 </div>
               </div>
-              <Button variant="ghost" size="sm" onClick={() => setIsOpen(false)} className="text-white hover:bg-white/20 h-8 w-8 p-0">
+              <Button variant="ghost" size="sm" onClick={() => {
+                setIsOpen(false);
+                // Reset chat when closed
+                setTimeout(() => {
+                  setMessages([]);
+                  setShowOptions(true);
+                  setIsTyping(false);
+                  setSelectedOption(null);
+                }, 300);
+              }} className="text-white hover:bg-white/20 h-8 w-8 p-0">
                 <X className="h-4 w-4" />
               </Button>
             </div>
@@ -299,7 +285,12 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
       )}
 
       {/* Detail Popup */}
-      <Dialog open={showPopup} onOpenChange={setShowPopup}>
+      <Dialog open={showPopup} onOpenChange={(open) => {
+        setShowPopup(open);
+        if (!open) {
+          setSelectedOption(null);
+        }
+      }}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
