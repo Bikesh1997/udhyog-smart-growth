@@ -518,44 +518,59 @@ const FinancialHealthDetails: React.FC = () => {
           </div>
         </div>
 
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          <EnhancedKPI
-            title="Cash Flow Status"
-            value={analysis ? analysis.kpis.cashFlowStatus : "—"}
-            icon={<TrendingUp className="w-6 h-6" />}
-            tone={tone as any}
-            badge="AI Rated"
-            trend={analysis?.kpis.cashFlowStatus === 'Healthy' ? '+12%' : analysis?.kpis.cashFlowStatus === 'Tight' ? '-3%' : '-8%'}
-            description="Based on 90-day forecast"
-          />
-          <EnhancedKPI
-            title="Revenue Growth"
-            value={`${analysis ? analysis.kpis.revenueGrowthPct : 0}%`}
-            icon={<DollarSign className="w-6 h-6" />}
-            tone={analysis && analysis.kpis.revenueGrowthPct >= 10 ? "good" : "default"}
-            badge="MoM"
-            trend={analysis && analysis.kpis.revenueGrowthPct >= 10 ? '+2.3%' : '-1.1%'}
-            description="Month over month growth"
-          />
-          <EnhancedKPI
-            title="Expense Efficiency"
-            value="6-9%"
-            icon={<Target className="w-6 h-6" />}
-            tone="good"
-            badge="Savings Potential"
-            trend="+15%"
-            description="Optimization opportunities"
-          />
-          <EnhancedKPI
-            title="Industry Rank"
-            value={`${analysis ? analysis.kpis.benchmarkPercentile : 0}th`}
-            icon={<Award className="w-6 h-6" />}
-            tone="good"
-            badge="Percentile"
-            trend="+5"
-            description="Peer comparison"
-          />
-        </div>
+        <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+  <EnhancedKPI
+    title="Cash Flow Status"
+    value={analysis ? analysis.kpis.cashFlowStatus : "—"}
+    icon={<TrendingUp className="w-6 h-6" />}
+    tone={tone as any}
+    badge="AI Rated"
+    trend={
+      analysis?.kpis.cashFlowStatus === "Healthy"
+        ? "+12%"
+        : analysis?.kpis.cashFlowStatus === "Tight"
+        ? "-3%"
+        : "-8%"
+    }
+    description="Based on 90-day forecast"
+  />
+  <EnhancedKPI
+    title="Revenue Growth"
+    value={`${analysis ? analysis.kpis.revenueGrowthPct : 0}%`}
+    icon={<DollarSign className="w-6 h-6" />}
+    tone={
+      analysis && analysis.kpis.revenueGrowthPct >= 10
+        ? "good"
+        : "default"
+    }
+    badge="MoM"
+    trend={
+      analysis && analysis.kpis.revenueGrowthPct >= 10
+        ? "+2.3%"
+        : "-1.1%"
+    }
+    description="Month over month growth"
+  />
+  <EnhancedKPI
+    title="Expense Efficiency"
+    value="6-9%"
+    icon={<Target className="w-6 h-6" />}
+    tone="good"
+    badge="Savings Potential"
+    trend="+15%"
+    description="Optimization opportunities"
+  />
+  <EnhancedKPI
+    title="Industry Rank"
+    value={`${analysis ? analysis.kpis.benchmarkPercentile : 0}th`}
+    icon={<Award className="w-6 h-6" />}
+    tone="good"
+    badge="Percentile"
+    trend="+5"
+    description="Peer comparison"
+  />
+</div>
+
       </div>
 
       {/* Enhanced Forecast Section */}
