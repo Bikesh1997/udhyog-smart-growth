@@ -37,7 +37,7 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   const chatOptions = [
     { id: 'growth-advisor', label: 'Growth Advisor', icon: '📈' },
     { id: 'financial-health', label: 'Financial Health', icon: '💰' },
-    { id: 'smart-compliance', label: 'SMART COMPLIANCE', icon: '📊' },
+    { id: 'smart-compliance', label: 'Smart Compliance', icon: '📊' },
     { id: 'vendor-optimization', label: 'Vendor Optimization', icon: '🚚' },
     { id: 'business-planning', label: 'Business Planning', icon: '📋' },
     { id: 'reminders', label: 'Reminders', icon: '🔔' }
