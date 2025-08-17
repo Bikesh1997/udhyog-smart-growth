@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, ToggleLeft, ToggleRight } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/ui/dialog';
@@ -30,7 +30,7 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   const [hovered, setHovered] = useState(false);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showPopup, setShowPopup] = useState(false);
-  const [muneemjiStyle, setMuneemjiStyle] = useState<'formal' | 'traditional'>('formal');
+  
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
@@ -65,9 +65,6 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
   }, [isOpen]);
 
   const getMuneemjiImage = () => {
-    if (muneemjiStyle === 'formal') {
-      return '/lovable-uploads/2f463624-6d54-4874-a62f-1fca674d4804.png';
-    }
     return '/lovable-uploads/c7ef736c-7271-43d1-9fdf-7106dc697ab2.png';
   };
 
@@ -207,18 +204,6 @@ const MuneemjiChatbot: React.FC<MuneemjiChatbotProps> = ({ onNavigate }) => {
                 </div>
               </div>
               <div className="flex items-center gap-2">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setMuneemjiStyle(muneemjiStyle === 'formal' ? 'traditional' : 'formal')}
-                  className="text-white hover:bg-white/20 h-8 px-2"
-                  title="Toggle Muneem Ji Style"
-                >
-                  {muneemjiStyle === 'formal' ? 
-                    <ToggleLeft className="h-4 w-4" /> : 
-                    <ToggleRight className="h-4 w-4" />
-                  }
-                </Button>
                 <Button variant="ghost" size="sm" onClick={() => {
                   setIsOpen(false);
                   // Reset chat when closed
