@@ -5,7 +5,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from '@/components/u
 import LoanOverviewDetails from '@/components/muneem-details/LoanOverviewDetails';
 import ComplianceDashboardDetails from '@/components/muneem-details/ComplianceDashboardDetails';
 import RegulatoryUpdatesDetails from '@/components/muneem-details/RegulatoryUpdatesDetails';
-import GrowthTipsDetails from '@/components/muneem-details/GrowthTipsDetails';
+import GrowthAdvisorDetails from '@/components/muneem-details/GrowthAdvisorDetails';
 import MSMEUpdatesDetails from '@/components/muneem-details/MSMEUpdatesDetails';
 import FinancialTipsDetails from '@/components/muneem-details/FinancialTipsDetails';
 
@@ -21,7 +21,7 @@ const MuneemjiMainInterface: React.FC<MuneemjiMainInterfaceProps> = ({ onNavigat
     { id: 'compliance', label: 'Compliance Dashboard', icon: '📊' },
     { id: 'loans', label: 'Loan Overview', icon: '💰' },
     { id: 'regulatory', label: 'Regulatory Updates', icon: '📋' },
-    { id: 'growth', label: 'Growth Tips', icon: '📈' },
+    { id: 'growth', label: 'Growth Advisor', icon: '📈' },
     { id: 'msme', label: 'Latest MSME Updates', icon: '📰' },
     { id: 'financial', label: 'Financial Tips', icon: '💡' }
   ];
@@ -49,7 +49,7 @@ const MuneemjiMainInterface: React.FC<MuneemjiMainInterfaceProps> = ({ onNavigat
       case 'regulatory':
         return <RegulatoryUpdatesDetails />;
       case 'growth':
-        return <GrowthTipsDetails />;
+        return <GrowthAdvisorDetails />;
       case 'msme':
         return <MSMEUpdatesDetails />;
       case 'financial':
