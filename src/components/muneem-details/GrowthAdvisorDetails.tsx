@@ -55,15 +55,19 @@ const GrowthAdvisorDetails: React.FC = () => {
   ];
 
   useEffect(() => {
-    const sequence = async () => {
+    let typingInterval: NodeJS.Timeout;
+    let pointingInterval: NodeJS.Timeout;
+    
+    const runAnimationSequence = () => {
       // Stage 0: Show large Muneem Ji with wave animation
       setAnimationStage(0);
       
       // Stage 1: Start typing after 2 seconds
-      setTimeout(() => {
+      const stage1Timer = setTimeout(() => {
         setAnimationStage(1);
         let currentIndex = 0;
-        const typingInterval = setInterval(() => {
+        
+        typingInterval = setInterval(() => {
           if (currentIndex <= fullText.length) {
             setDisplayedText(fullText.slice(0, currentIndex));
             currentIndex++;
@@ -71,38 +75,44 @@ const GrowthAdvisorDetails: React.FC = () => {
             clearInterval(typingInterval);
             setAnimationStage(2);
             
-            // Stage 2: Show business metrics one by one
-            setTimeout(() => {
+            // Stage 2: Show business metrics after typing is complete
+            const stage2Timer = setTimeout(() => {
               setShowData(true);
               
-              // Stage 3: After all data is shown, shrink and move Muneem Ji
-              setTimeout(() => {
+              // Stage 3: After data is shown, shrink and move Muneem Ji
+              const stage3Timer = setTimeout(() => {
                 setMuneemJiSize('small');
                 setMuneemJiPosition('side');
                 setAnimationStage(3);
                 
                 // Stage 4: Add pointing interactions
-                setTimeout(() => {
+                const stage4Timer = setTimeout(() => {
                   setAnimationStage(4);
+                  
                   // Cycle through pointing at different metrics
                   const pointingCycle = ['turnover', 'profit', 'orders', 'share', 'market'];
                   let pointIndex = 0;
-                  const pointingInterval = setInterval(() => {
+                  
+                  pointingInterval = setInterval(() => {
                     setPointingAt(pointingCycle[pointIndex]);
                     pointIndex = (pointIndex + 1) % pointingCycle.length;
                   }, 2000);
-                  
-                  return () => clearInterval(pointingInterval);
                 }, 1000);
-              }, 4000);
+              }, 3000);
             }, 1000);
           }
         }, 50);
       }, 2000);
     };
 
-    sequence();
-  }, []);
+    runAnimationSequence();
+
+    // Cleanup function
+    return () => {
+      if (typingInterval) clearInterval(typingInterval);
+      if (pointingInterval) clearInterval(pointingInterval);
+    };
+  }, [fullText]);
 
   // Chart data
   const globalMarketData = [
