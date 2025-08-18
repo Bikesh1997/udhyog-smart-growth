@@ -5,6 +5,8 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, HashRouter } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
+import GSTNewsPopup from "./components/GSTNewsPopup";
+import PreApprovedLoanPopup from "./components/PreApprovedLoanPopup";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -21,6 +23,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <GSTNewsPopup onClose={() => {}} />
+      <PreApprovedLoanPopup onClose={() => {}} />
       <HashRouter >
 
         <Routes>
