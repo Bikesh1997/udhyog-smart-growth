@@ -38,69 +38,32 @@ import {
 
 const GrowthAdvisorDetails: React.FC = () => {
   const [activeTab, setActiveTab] = useState('local');
-  const [animationStep, setAnimationStep] = useState(0);
-  const [muneemjiPosition, setMuneemjiPosition] = useState('center'); // 'center' or 'side'
-  const [muneemjiSize, setMuneemjiSize] = useState('large'); // 'large' or 'small'
-  const [pointingTarget, setPointingTarget] = useState('');
   const [isTyping, setIsTyping] = useState(true);
   const [displayedText, setDisplayedText] = useState('');
-  const [showMetrics, setShowMetrics] = useState(false);
+  const [showDots, setShowDots] = useState(true);
   
   const fullText = "Let me help you with some competition analysis of the garment business in global and domestic markets.";
-  
-  const businessMetrics = [
-    { key: 'turnover', label: 'Annual Turnover', value: '₹5 Crore', icon: '💰' },
-    { key: 'profit', label: 'Profit Margin', value: '~12%', icon: '📈' },
-    { key: 'orders', label: 'Monthly Orders', value: '2,200 units', icon: '📦' },
-    { key: 'market', label: 'Market Share', value: '~1.9%', icon: '🎯' },
-    { key: 'size', label: 'Market Size', value: '₹260 Crore', icon: '🏢' }
-  ];
 
   useEffect(() => {
-    const animationSequence = async () => {
-      // Step 1: Welcome wave (2s)
-      setAnimationStep(1);
-      await new Promise(resolve => setTimeout(resolve, 2000));
+    // Show typing dots for 2 seconds
+    setTimeout(() => {
+      setShowDots(false);
+      setIsTyping(true);
       
-      // Step 2: Start typing (3s)
-      setAnimationStep(2);
+      // Type out the text character by character
       let currentIndex = 0;
       const typingInterval = setInterval(() => {
         if (currentIndex <= fullText.length) {
           setDisplayedText(fullText.slice(0, currentIndex));
           currentIndex++;
         } else {
-          clearInterval(typingInterval);
           setIsTyping(false);
+          clearInterval(typingInterval);
         }
       }, 50);
-      
-      await new Promise(resolve => setTimeout(resolve, 3000));
-      
-      // Step 3: Show metrics gradually (4s)
-      setAnimationStep(3);
-      setShowMetrics(true);
-      await new Promise(resolve => setTimeout(resolve, 4000));
-      
-      // Step 4: Move to side and shrink (1s)
-      setAnimationStep(4);
-      setMuneemjiPosition('side');
-      setMuneemjiSize('small');
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Step 5: Start pointing interactions
-      setAnimationStep(5);
-      const pointingSequence = ['turnover', 'profit', 'market', 'size'];
-      
-      for (let i = 0; i < pointingSequence.length; i++) {
-        setPointingTarget(pointingSequence[i]);
-        await new Promise(resolve => setTimeout(resolve, 2000));
-        setPointingTarget('');
-        await new Promise(resolve => setTimeout(resolve, 500));
-      }
-    };
 
-    animationSequence();
+      return () => clearInterval(typingInterval);
+    }, 2000);
   }, []);
 
   // Chart data
@@ -144,119 +107,67 @@ const GrowthAdvisorDetails: React.FC = () => {
   };
 
   return (
-    <div className="space-y-6 relative">
-      {/* Animated Muneem Ji Introduction */}
-      <div className={`relative transition-all duration-1000 ${muneemjiPosition === 'center' ? 'min-h-screen flex items-center justify-center' : 'min-h-0'}`}>
-        <Card className={`bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 overflow-hidden transition-all duration-1000 ${
-          muneemjiPosition === 'center' ? 'max-w-4xl mx-auto scale-110' : 'max-w-full scale-100'
-        }`}>
-          <CardContent className="p-6">
-            <div className={`flex items-center transition-all duration-1000 ${
-              muneemjiPosition === 'center' ? 'flex-col gap-8' : 'flex-row gap-4'
-            }`}>
-              {/* Muneem Ji Character */}
-              <div className={`relative transition-all duration-1000 ${
-                muneemjiSize === 'large' ? 'w-48 h-48' : 'w-20 h-20'
-              } ${muneemjiPosition === 'center' ? 'order-1' : 'order-1 flex-shrink-0'}`}>
-                <img
-                  src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
-                  alt="Muneem Ji"
-                  className={`w-full h-full object-contain transition-all duration-1000 ${
-                    animationStep === 1 ? 'animate-bounce scale-110' : 
-                    animationStep >= 5 && pointingTarget ? 'scale-105 rotate-12' : 'scale-100'
-                  }`}
-                />
+    <div className="space-y-6">
+      {/* Muneem Ji Speaking Header */}
+      <div className="relative">
+       <Card className="bg-gradient-to-br from-primary/5 to-primary/10 border-primary/20 overflow-hidden">
+               <CardContent className="p-4">
+                 <div className="flex items-center gap-8">
+                   <div className="relative flex-shrink-0">
+                     <img
+                       src={`${process.env.NODE_ENV === 'production' ? '/aditya-birla-finance-limited/' : '/'}generated-image.png`}
+                       alt="Muneem Ji"
+                       className={`h-20 w-15 transition-all duration-500 ${
+                         isTyping ? 'scale-105' : 'scale-100'
+                       }`}
+                     />
+                     <div className={`absolute -top-1 -right-1 h-4 w-4 rounded-full border-2 border-white transition-all duration-300 ${
+                       isTyping ? 'bg-orange-500 animate-ping' : 'bg-green-500 animate-pulse'
+                     }`}></div>
+                     
                 
-                {/* Welcome Wave Hand */}
-                {animationStep === 1 && (
-                  <div className="absolute -top-4 -right-4 text-6xl animate-bounce">
-                    👋
-                  </div>
-                )}
-                
-                {/* Pointing Hand */}
-                {animationStep >= 5 && pointingTarget && (
-                  <div className="absolute -right-8 top-1/2 text-4xl animate-pulse transform -translate-y-1/2">
-                    👉
-                  </div>
-                )}
-                
-                {/* Status Indicator */}
-                <div className={`absolute -top-2 -right-2 h-6 w-6 rounded-full border-2 border-white transition-all duration-300 ${
-                  animationStep === 1 ? 'bg-yellow-500 animate-ping' :
-                  animationStep === 2 && isTyping ? 'bg-orange-500 animate-ping' : 
-                  'bg-green-500 animate-pulse'
-                }`}></div>
-              </div>
+                   </div>
 
-              {/* Content Area */}
-              <div className={`transition-all duration-1000 ${
-                muneemjiPosition === 'center' ? 'order-2 text-center max-w-2xl' : 'order-2 flex-1'
-              }`}>
-                <div className="flex items-center gap-2 mb-4 justify-center">
-                  <h1 className={`font-bold transition-all duration-500 ${
-                    muneemjiSize === 'large' ? 'text-4xl' : 'text-xl'
-                  }`}>
-                    📈 Growth Advisor Analysis
-                  </h1>
-                  {animationStep === 2 && isTyping && (
-                    <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full"></div>
-                  )}
-                </div>
-                
-                {/* Muneem Ji Speech */}
-                {animationStep >= 2 && (
-                  <div className={`mb-6 transition-all duration-500 ${
-                    muneemjiSize === 'large' ? 'text-lg' : 'text-sm'
-                  }`}>
-                    <p className="text-foreground">
-                      {displayedText}
-                      {isTyping && <span className="inline-block w-0.5 h-5 bg-primary ml-1 animate-ping"></span>}
-                    </p>
+                   {isTyping && (
+                  <div className="">
+                    <div className="flex gap-1">
+                      <div className="w-0.5 bg-primary/40 rounded-full animate-bounce" style={{ height: '16px', animationDelay: '0ms' }}></div>
+                      <div className="w-0.5 bg-primary/60 rounded-full animate-bounce" style={{ height: '30px', animationDelay: '100ms' }}></div>
+                      <div className="w-0.5 bg-primary/40 rounded-full animate-bounce" style={{ height: '18px', animationDelay: '200ms' }}></div>
+                      <div className="w-0.5 bg-primary/40 rounded-full animate-bounce" style={{ height: '16px', animationDelay: '0ms' }}></div>
+                      <div className="w-0.5 bg-primary/60 rounded-full animate-bounce" style={{ height: '30px', animationDelay: '100ms' }}></div>
+                      <div className="w-0.5 bg-primary/40 rounded-full animate-bounce" style={{ height: '18px', animationDelay: '200ms' }}></div>
+                    </div>
                   </div>
                 )}
-              </div>
-            </div>
-            
-            {/* Animated Business Metrics */}
-            {showMetrics && (
-              <div className={`mt-8 transition-all duration-1000 ${
-                muneemjiPosition === 'center' ? 'order-3' : 'order-3'
-              }`}>
-                <h3 className={`font-semibold mb-4 text-center transition-all duration-500 ${
-                  muneemjiSize === 'large' ? 'text-2xl' : 'text-lg'
-                }`}>
-                  Key Business Metrics
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
-                  {businessMetrics.map((metric, index) => (
-                    <Card
-                      key={metric.key}
-                      className={`p-4 bg-gradient-to-br from-primary/10 to-secondary/10 border transition-all duration-500 hover:scale-105 ${
-                        pointingTarget === metric.key ? 'border-primary bg-primary/20 scale-110 shadow-lg' : 'border-muted'
-                      }`}
-                      style={{
-                        animationDelay: `${index * 200}ms`,
-                        animation: `fade-in 0.6s ease-out forwards ${index * 200}ms`
-                      }}
-                    >
-                      <div className="text-center space-y-2">
-                        <div className="text-3xl">{metric.icon}</div>
-                        <div className="font-semibold text-lg text-primary">
-                          {metric.value}
-                        </div>
-                        <div className="text-sm text-muted-foreground">
-                          {metric.label}
-                        </div>
-                      </div>
-                    </Card>
-                  ))}
-                </div>
-              </div>
-            )}
-          </CardContent>
-        </Card>
+                   
+                   <div className="flex-1">
+                     <div className="flex items-center gap-2 mb-2">
+                       <h1 className="text-xl font-bold">Growth Advisor Analysis</h1>
+                       {isTyping && <div className="animate-spin h-4 w-4 border-2 border-primary border-t-transparent rounded-full"></div>}
+                     </div>
+                     
+                     {showDots && (
+                       <div className="flex items-center gap-2">
+                         <div className="flex gap-1">
+                           <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+                           <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+                           <div className="w-2 h-2 bg-primary/60 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
+                         </div>
+                         <span className="text-sm text-muted-foreground animate-pulse">Analyzing market data...</span>
+                       </div>
+                     )}
+                     
+                     {!showDots && (
+                       <p className="text-sm text-foreground">
+                         {displayedText}
+                         {isTyping && <span className="inline-block w-0.5 h-4 bg-primary ml-1 animate-ping"></span>}
+                       </p>
+                     )}
+                   </div>
+                 </div>
+               </CardContent>
+             </Card>
       </div>
 
       {/* Tabs Navigation */}
